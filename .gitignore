@@ -219,9 +219,9 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-AWI-IOS/GoogleService-Info.plist
-AWI-IOS/credentials.plist
-AWI-IOS/env.swift
+Mobile-projet-iOS/GoogleService-Info.plist
+Mobile-projet-iOS/credentials.plist
+Mobile-projet-iOS/env.swift
 
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,macos,appcode+all
