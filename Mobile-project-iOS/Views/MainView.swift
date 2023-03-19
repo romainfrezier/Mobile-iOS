@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct MainView: View {
+    @AppStorage("loggedIn") var loggedIn: Bool = false
+    @State var volunteer : VolunteerDTO = VolunteerDTO()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            if !loggedIn {
+                AuthView()
+            } else if volunteer.isAdmin {
+                LoggedInView(isLoggedIn: $loggedIn)
+            } else {
+                LoggedInView(isLoggedIn: $loggedIn)
+            }
         }
-        .padding()
     }
 }
 

@@ -220,6 +220,7 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 Mobile-project-iOS/GoogleService-Info.plist
+Mobile-project-iOS/Info.plist
 Mobile-project-iOS/credentials.plist
 Mobile-project-iOS/env.swift
 
