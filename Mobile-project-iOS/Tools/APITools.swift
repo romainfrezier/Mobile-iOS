@@ -46,7 +46,7 @@ struct APITools {
     }
     
     // MARK: - Get data
-    static func loadFromAPI<T : Decodable>(endpoint: String, callback: @escaping ([T]) -> Void){
+    static func loadFromAPI<T : Decodable>(endpoint: String, callback: @escaping (APIResult<T>) -> Void){
         guard let url = buildURL(endpoint: endpoint) else {
             return
         }
@@ -79,13 +79,30 @@ struct APITools {
                         
                         let result : [T] = try decoder.decode([T].self, from: data)
                         DispatchQueue.main.async {
-                            callback(result)
+                            callback(.successList(result))
                         }
                     } else {
                         print("No data")
                     }
-                } catch let JsonError {
-                    print("fetch json error:", JsonError)
+                } catch {
+                    do {
+                        if let data = data {
+                            
+                            let dateFormatter = DateFormatters.dbDate()
+                            
+                            let decoder = JSONDecoder()
+                            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                            
+                            let result : T = try decoder.decode(T.self, from: data)
+                            DispatchQueue.main.async {
+                                callback(.success(result))
+                            }
+                        } else {
+                            print("No data")
+                        }
+                    } catch let JsonError {
+                        print("fetch json error:", JsonError)
+                    }
                 }
             }.resume()
         }

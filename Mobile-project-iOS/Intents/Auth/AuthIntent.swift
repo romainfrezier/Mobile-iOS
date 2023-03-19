@@ -28,8 +28,13 @@ struct AuthIntent {
     }
     
     // MARK: - Aux async function to call API
-    func loadedData(result : [VolunteerDTO]){
-        authVM.state = .load(result)
+    func loadedData(result : APIResult<VolunteerDTO>){
+        switch result {
+        case .success(let value):
+            authVM.state = .loadOne(value)
+        default:
+            authVM.state = .failed(.apiError)
+        }
     }
     
     func loadAux(uid: String) async {

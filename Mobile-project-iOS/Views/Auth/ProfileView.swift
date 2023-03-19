@@ -17,49 +17,58 @@ struct ProfileView: View {
     
     @State private var showConfirmationDialog = false
     
-    @State private var intent : AuthIntent
-    @ObservedObject private var vm : AuthViewModel
-    
-    init(isLoggedIn : Binding<Bool>){
-        self.vm = AuthViewModel()
-        self.intent = AuthIntent(authVM: _vm.wrappedValue)
-        self._isLoggedIn = isLoggedIn
-    }
-    
-    private var authUser : User? {
-        return Auth.auth().currentUser
-    }
+    @EnvironmentObject var currentUser : AuthViewModel
     
     @State var hour : Int = 0
     
     var body: some View {
         VStack {
-            Image(systemName: "person.crop.circle.fill")
-                .resizable(resizingMode: .stretch)
-                .frame(width: /*@START_MENU_TOKEN@*/50.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/50.0/*@END_MENU_TOKEN@*/).padding()
-            switch vm.state {
-            case .loading :
-                ProgressView()
-            case .idle :
-                if hour >= 6 && hour < 18 {
-                    Text("Bonjour \(displayName) ☀️").font(.title).fontWeight(.bold).multilineTextAlignment(.center).padding()
+            AsyncImage(url: Auth.auth().currentUser!.photoURL){ phase in
+                if let image = phase.image {
+                    image.resizable().aspectRatio(contentMode: .fill)
+                } else if let _ = phase.error {
+                    Image(systemName: "person.crop.circle.fill")
+                        .resizable(resizingMode: .stretch)
                 } else {
-                    Text("Bonsoir \(displayName) 🌙").font(.title).fontWeight(.bold).multilineTextAlignment(.center).padding()
+                    ProgressView()
                 }
-            default:
-                CustomEmptyView()
+                
+            }.clipShape(Circle()).frame(width: 75, height: 75).overlay(Circle().stroke(.gray, lineWidth: 1).shadow(color: .gray, radius: 4, x: 0, y: 2)).padding()
+            
+            VStack {
+                
+                if currentUser.volunteer.isAdmin {
+                    Text(displayName).font(.title).fontWeight(.bold).multilineTextAlignment(.center)
+                    Text("(admin)").font(.caption).italic().padding(.bottom)
+                } else {
+                    Text(displayName).font(.title).fontWeight(.bold).multilineTextAlignment(.center).padding(.bottom)
+                }
+                
+                switch currentUser.state {
+                case .loading :
+                    ProgressView()
+                case .idle :
+                    if hour >= 6 && hour < 18 {
+                        Text("Bonjour ! ☀️").font(.title2).fontWeight(.bold).multilineTextAlignment(.center).padding()
+                    } else if hour >= 18 && hour < 22 {
+                        Text("Bonsoir ! 🌙").font(.title2).fontWeight(.bold).multilineTextAlignment(.center).padding()
+                    } else {
+                        Text("Bonne nuit ! 😴").font(.title2).fontWeight(.bold).multilineTextAlignment(.center).padding()
+                    }
+                default:
+                    CustomEmptyView()
+                }
+                
             }
             
             Spacer()
-            CustomButton(text: "Réinitialiser mon mot de passe", action: toggleShowConfirmationDialog)
+            CustomButton(text: "Modifier mes informations", action: toggleShowConfirmationDialog).padding() // TODO : Page modif nom + prenom
+            CustomButton(text: "Réinitialiser mon mot de passe", action: toggleShowConfirmationDialog).padding()
             CustomButton(text: "Se déconnecter", action: toggleIsLoggedIn).padding()
             Spacer()
         }
         .onAppear{
-            if self.authUser != nil {
-                intent.load(uid: authUser!.uid)
-                displayName = vm.volunteer.firstName + " " + vm.volunteer.lastName
-            }
+            displayName = currentUser.volunteer.firstName + " " + currentUser.volunteer.lastName
             let date : Date = Date()
             self.hour = Calendar.current.component(.hour, from: date)
         }

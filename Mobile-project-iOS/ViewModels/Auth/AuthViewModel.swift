@@ -12,13 +12,9 @@ class AuthViewModel: ObservableObject {
     @Published var state: APIStates<VolunteerDTO> = .idle {
         didSet{
             switch state {
-            case .load(let result):
-                if (result.count == 1){
-                    self.volunteer = result[0]
-                    self.state = .idle
-                } else {
-                    self.state = .failed(.apiError)
-                }
+            case .loadOne(let result):
+                self.volunteer = result
+                self.state = .idle
             case .failed(let error):
                 print("failed: \(error)")
             default:

@@ -12,6 +12,7 @@ enum APIStates<T> {
     case creating
     case loading
     case load([T])
+    case loadOne(T)
     case deleting
     case updating
     case failed(APIErrors)

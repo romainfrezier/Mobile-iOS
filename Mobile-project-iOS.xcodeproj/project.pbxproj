@@ -44,6 +44,9 @@
 		A762E9A229C75A2500B23915 /* CustomEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762E9A029C75A2400B23915 /* CustomEmptyView.swift */; };
 		A762E9A529C75BFC00B23915 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A762E9A429C75BFC00B23915 /* FirebaseAuth */; };
 		A762E9A729C75BFC00B23915 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A762E9A629C75BFC00B23915 /* FirebaseAuthCombine-Community */; };
+		A7F0E77729C7B4EE006BC332 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0E77629C7B4EE006BC332 /* APIResult.swift */; };
+		A7F0E77B29C7C622006BC332 /* AdminHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0E77A29C7C622006BC332 /* AdminHomeView.swift */; };
+		A7F0E77D29C7C630006BC332 /* VolunteerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0E77C29C7C630006BC332 /* VolunteerHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +84,9 @@
 		A762E99B29C759E300B23915 /* PasswordToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordToggle.swift; sourceTree = "<group>"; };
 		A762E99F29C75A2400B23915 /* LoggedInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInView.swift; sourceTree = "<group>"; };
 		A762E9A029C75A2400B23915 /* CustomEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEmptyView.swift; sourceTree = "<group>"; };
+		A7F0E77629C7B4EE006BC332 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		A7F0E77A29C7C622006BC332 /* AdminHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeView.swift; sourceTree = "<group>"; };
+		A7F0E77C29C7C630006BC332 /* VolunteerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerHomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,8 @@
 		A762E95C29C750DE00B23915 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A7F0E77929C7C5FC006BC332 /* Volunteer */,
+				A7F0E77829C7C5F6006BC332 /* Admin */,
 				A762E98C29C7595600B23915 /* Auth */,
 				A762E95029C74E7000B23915 /* MainView.swift */,
 				A762E9A029C75A2400B23915 /* CustomEmptyView.swift */,
@@ -226,6 +234,7 @@
 				A752AB6F29C7893200CF4E38 /* APIErrors.swift */,
 				A752AB7129C7893300CF4E38 /* APIStates.swift */,
 				A752AB7029C7893200CF4E38 /* SortOptions.swift */,
+				A7F0E77629C7B4EE006BC332 /* APIResult.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -241,6 +250,22 @@
 				A762E99129C7598200B23915 /* SignupView.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		A7F0E77829C7C5F6006BC332 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				A7F0E77A29C7C622006BC332 /* AdminHomeView.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		A7F0E77929C7C5FC006BC332 /* Volunteer */ = {
+			isa = PBXGroup;
+			children = (
+				A7F0E77C29C7C630006BC332 /* VolunteerHomeView.swift */,
+			);
+			path = Volunteer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,15 +358,18 @@
 				A762E96829C7517D00B23915 /* StringTools.swift in Sources */,
 				A762E96729C7517D00B23915 /* DateFormatters.swift in Sources */,
 				A762E95129C74E7000B23915 /* MainView.swift in Sources */,
+				A7F0E77729C7B4EE006BC332 /* APIResult.swift in Sources */,
 				A752AB7229C7893300CF4E38 /* APIErrors.swift in Sources */,
 				A762E99629C7598200B23915 /* ResetPasswordView.swift in Sources */,
 				A752AB6B29C77D3C00CF4E38 /* VolunteerDTO.swift in Sources */,
 				A762E99D29C759E300B23915 /* CustomButton.swift in Sources */,
 				A752AB6E29C787CE00CF4E38 /* AuthViewModel.swift in Sources */,
 				A762E99E29C759E300B23915 /* PasswordToggle.swift in Sources */,
+				A7F0E77B29C7C622006BC332 /* AdminHomeView.swift in Sources */,
 				A762E99C29C759E300B23915 /* GoogleButton.swift in Sources */,
 				A762E9A229C75A2500B23915 /* CustomEmptyView.swift in Sources */,
 				A752AB7329C7893300CF4E38 /* SortOptions.swift in Sources */,
+				A7F0E77D29C7C630006BC332 /* VolunteerHomeView.swift in Sources */,
 				A762E9A129C75A2500B23915 /* LoggedInView.swift in Sources */,
 				A752AB7729C78A7A00CF4E38 /* AuthIntent.swift in Sources */,
 				A762E96929C7517D00B23915 /* ViewExtensions.swift in Sources */,
