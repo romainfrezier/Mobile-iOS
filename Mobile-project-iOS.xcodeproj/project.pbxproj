@@ -20,11 +20,12 @@
 		A762E97229C751FA00B23915 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A762E97129C751FA00B23915 /* GoogleSignInSwift */; };
 		A762E97729C753DA00B23915 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A762E97629C753DA00B23915 /* FirebaseAuth */; };
 		A762E97929C7541B00B23915 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762E97829C7541B00B23915 /* AppDelegate.swift */; };
-		A762E97B29C754BF00B23915 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762E97A29C754BE00B23915 /* env.swift */; };
 		A762E98029C7556C00B23915 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A762E97C29C7556B00B23915 /* README.md */; };
 		A762E98129C7556C00B23915 /* linecount.md in Resources */ = {isa = PBXBuildFile; fileRef = A762E97D29C7556B00B23915 /* linecount.md */; };
 		A762E98229C7556C00B23915 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A762E97E29C7556C00B23915 /* .gitignore */; };
 		A762E98329C7556C00B23915 /* linecount.sh in Resources */ = {isa = PBXBuildFile; fileRef = A762E97F29C7556C00B23915 /* linecount.sh */; };
+		A762E98829C758CD00B23915 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A762E98629C758CD00B23915 /* GoogleService-Info.plist */; };
+		A762E98929C758CD00B23915 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762E98729C758CD00B23915 /* env.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,11 +39,12 @@
 		A762E96529C7517D00B23915 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		A762E96629C7517D00B23915 /* APITools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITools.swift; sourceTree = "<group>"; };
 		A762E97829C7541B00B23915 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A762E97A29C754BE00B23915 /* env.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
 		A762E97C29C7556B00B23915 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A762E97D29C7556B00B23915 /* linecount.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = linecount.md; sourceTree = "<group>"; };
 		A762E97E29C7556C00B23915 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A762E97F29C7556C00B23915 /* linecount.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = linecount.sh; sourceTree = "<group>"; };
+		A762E98629C758CD00B23915 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A762E98729C758CD00B23915 /* env.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				A762E95229C74E7300B23915 /* Assets.xcassets */,
-				A762E97A29C754BE00B23915 /* env.swift */,
+				A762E98629C758CD00B23915 /* GoogleService-Info.plist */,
+				A762E98729C758CD00B23915 /* env.swift */,
 				A762E94E29C74E7000B23915 /* Mobile_project_iOSApp.swift */,
 				A762E97829C7541B00B23915 /* AppDelegate.swift */,
 				A762E96029C7512500B23915 /* Components */,
@@ -236,6 +239,7 @@
 				A762E98029C7556C00B23915 /* README.md in Resources */,
 				A762E98229C7556C00B23915 /* .gitignore in Resources */,
 				A762E98329C7556C00B23915 /* linecount.sh in Resources */,
+				A762E98829C758CD00B23915 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +255,7 @@
 				A762E95129C74E7000B23915 /* MainView.swift in Sources */,
 				A762E96929C7517D00B23915 /* ViewExtensions.swift in Sources */,
 				A762E97929C7541B00B23915 /* AppDelegate.swift in Sources */,
-				A762E97B29C754BF00B23915 /* env.swift in Sources */,
+				A762E98929C758CD00B23915 /* env.swift in Sources */,
 				A762E96A29C7517D00B23915 /* APITools.swift in Sources */,
 				A762E94F29C74E7000B23915 /* Mobile_project_iOSApp.swift in Sources */,
 			);
