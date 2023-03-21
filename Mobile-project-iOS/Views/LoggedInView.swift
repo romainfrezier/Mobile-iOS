@@ -12,14 +12,8 @@ struct LoggedInView: View {
     
     @Binding var isLoggedIn : Bool
     
-    @State private var intent : AuthIntent
-    @ObservedObject private var currentUser : AuthViewModel
-    
-    init(isLoggedIn : Binding<Bool>){
-        self.currentUser = AuthViewModel()
-        self.intent = AuthIntent(authVM: _currentUser.wrappedValue)
-        self._isLoggedIn = isLoggedIn
-    }
+    @State var intent : AuthIntent
+    @EnvironmentObject var currentUser : AuthViewModel
     
     var body: some View {
         ZStack {
@@ -36,7 +30,7 @@ struct LoggedInView: View {
                 CustomEmptyView()
             }
         }.onAppear{
-            self.intent.load(uid: Auth.auth().currentUser!.uid)
+            self.intent.load(firebaseId: Auth.auth().currentUser!.uid)
         }
     }
 }

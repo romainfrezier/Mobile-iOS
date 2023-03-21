@@ -27,6 +27,11 @@ struct APITools {
         }
     }
     
+    // MARK: - Get the firebase ID of the current user
+    private static func getFirebaseID() -> String {
+        return Auth.auth().currentUser!.uid
+    }
+    
     // MARK: - Build URL with end point
     private static func buildURL(endpoint: String) -> URL? {
         let builURL : String = env.apiURL + "/" + endpoint
@@ -46,7 +51,7 @@ struct APITools {
     }
     
     // MARK: - Get data
-    static func loadFromAPI<T : Decodable>(endpoint: String, callback: @escaping (APIResult<T>) -> Void){
+    static func loadFromAPI<T : Decodable>(endpoint: String, callback: @escaping (APIResult<T>) -> Void, apiReturn : String){
         guard let url = buildURL(endpoint: endpoint) else {
             return
         }
@@ -57,11 +62,12 @@ struct APITools {
                 return
             }
             
+            let uid = getFirebaseID()
+            
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue(token, forHTTPHeaderField: "authtoken")
-            
-            print("Request: \(request)")
+            request.addValue(uid, forHTTPHeaderField: "requester")
             
             URLSession.shared.dataTask(with: request) { (data, res, error) in
                 if error != nil {
@@ -69,22 +75,28 @@ struct APITools {
                     return
                 }
                 
-                do {
-                    if let data = data {
-                        
-                        let dateFormatter = DateFormatters.dbDate()
-                        
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                        
-                        let result : [T] = try decoder.decode([T].self, from: data)
-                        DispatchQueue.main.async {
-                            callback(.successList(result))
+                switch apiReturn {
+                case returnType.array.rawValue :
+                    do {
+                        if let data = data {
+                            
+                            let dateFormatter = DateFormatters.dbDate()
+                            
+                            let decoder = JSONDecoder()
+                            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                            
+                            let result : [T] = try decoder.decode([T].self, from: data)
+                            print(result)
+                            DispatchQueue.main.async {
+                                callback(.successList(result))
+                            }
+                        } else {
+                            print("No data")
                         }
-                    } else {
-                        print("No data")
+                    } catch let JsonError {
+                        print("fetch json error:", JsonError)
                     }
-                } catch {
+                case returnType.object.rawValue :
                     do {
                         if let data = data {
                             
@@ -103,6 +115,8 @@ struct APITools {
                     } catch let JsonError {
                         print("fetch json error:", JsonError)
                     }
+                default:
+                    print("Bad returnType")
                 }
             }.resume()
         }
@@ -121,10 +135,13 @@ struct APITools {
                 return
             }
             
+            let uid = getFirebaseID()
+            
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue(token, forHTTPHeaderField: "authtoken")
+            request.addValue(uid, forHTTPHeaderField: "requester")
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body)
@@ -161,10 +178,13 @@ struct APITools {
                 return
             }
             
+            let uid = getFirebaseID()
+            
             var request = URLRequest(url: url)
             request.httpMethod = "PUT"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue(token, forHTTPHeaderField: "authtoken")
+            request.addValue(uid, forHTTPHeaderField: "requester")
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body)
@@ -199,9 +219,14 @@ struct APITools {
                 print("Token is nil")
                 return
             }
+            
+            let uid = getFirebaseID()
+            
             var request = URLRequest(url: url)
             request.httpMethod = "DELETE"
             request.addValue(token, forHTTPHeaderField: "authtoken")
+            request.addValue(uid, forHTTPHeaderField: "requester")
+            
             URLSession.shared.dataTask(with: request) { (data, res, error) in
                 if error != nil {
                     print("error", error?.localizedDescription ?? "")

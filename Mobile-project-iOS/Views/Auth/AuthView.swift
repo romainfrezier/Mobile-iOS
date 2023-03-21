@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AuthView: View {
     
+    @State var intent : AuthIntent
+    
     @State private var currentViewShowing: String = "login"
     @State var userEmail : String = ""
     
@@ -20,14 +22,8 @@ struct AuthView: View {
         } else if (currentViewShowing == "check"){
             EmailCheckView(email: $userEmail, currentShowingView: $currentViewShowing).transition(.move(edge: .trailing))
         } else {
-            SignupView(emailToCheck: $userEmail, currentShowingView: $currentViewShowing)
+            SignupView(emailToCheck: $userEmail, currentShowingView: $currentViewShowing, intent: intent)
                 .transition(.move(edge: .bottom))
         }
-    }
-}
-
-struct AuthView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthView()
     }
 }

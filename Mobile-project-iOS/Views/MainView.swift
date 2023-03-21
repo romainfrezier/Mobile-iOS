@@ -10,12 +10,20 @@ import SwiftUI
 struct MainView: View {
     @AppStorage("loggedIn") var loggedIn: Bool = false
     
+    @State private var intent : AuthIntent
+    @ObservedObject private var currentUser : AuthViewModel
+    
+    init(){
+        self.currentUser = AuthViewModel()
+        self.intent = AuthIntent(authVM: _currentUser.wrappedValue)
+    }
+    
     var body: some View {
         VStack {
             if !loggedIn {
-                AuthView()
+                AuthView(intent: intent)
             } else {
-                LoggedInView(isLoggedIn: $loggedIn)
+                LoggedInView(isLoggedIn: $loggedIn, intent: intent).environmentObject(currentUser)
             }
         }
     }

@@ -50,13 +50,15 @@ class VolunteerDTO : Codable {
         case availableSlots
     }
     
-//    func getBody() -> [String : Any] {
-//        return [
-//            "prenom": self.firstName,
-//            "nom": self.lastName,
-//            "email": self.emailAddress
-//        ]
-//    }
+    func getBody() -> [String : Any] {
+        return [
+            "firstName" : self.firstName,
+            "lastName" : self.lastName,
+            "emailAddress" : self.emailAddress,
+            "festival" : self.festivalId ?? "",
+            "availableSlots" : self.availableSlots
+        ]
+    }
 }
 
 class AvailableSlotsDTO : Codable {

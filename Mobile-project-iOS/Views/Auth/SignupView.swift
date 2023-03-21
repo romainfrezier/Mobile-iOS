@@ -15,6 +15,8 @@ struct SignupView: View {
     @Binding var emailToCheck : String
     @Binding var currentShowingView: String
     
+    @State var intent : AuthIntent
+    
     @AppStorage("loggedIn") var loggedIn: Bool = false
     
     @State private var firstName: String = ""
@@ -142,16 +144,6 @@ struct SignupView: View {
         }
     }
     
-    private func createVolunteerOnMongoDB(userID : String, firstName: String, lastName: String, email: String) {
-        let body : [String : Any] = [
-            "firstName": firstName,
-            "lastName": lastName,
-            "email": email,
-            "firebaseId": userID
-        ]
-        APITools.createOnAPI(endpoint: "volunteers", body: body)
-    }
-    
     func signupWithGoogle() -> Void {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
@@ -187,7 +179,7 @@ struct SignupView: View {
                     return
                 }
                 
-                self.createVolunteerOnMongoDB(userID: result!.user.uid, firstName: firstNameGoogle, lastName: lastNameGoogle, email: emailGoogle)
+                self.intent.create(firebaseId: result!.user.uid, firstName: firstNameGoogle, lastName: lastNameGoogle, email: emailGoogle)
                 
                 withAnimation {
                     loggedIn = true
@@ -200,14 +192,18 @@ struct SignupView: View {
         if(StringTools.isValidPassword(password: password) && confirmPassword == password && StringTools.isValidEmail(email: email)) {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let error = error {
-                    errorMessage = "Une erreur est survenue"
+                    if (error.localizedDescription.contains("The email address is already in use by another account.")) {
+                        errorMessage = "Un compte est déjà associé à cet e-mail."
+                    } else {
+                        errorMessage = "Une erreur est survenue"
+                    }
                     print(error)
                     showErrorToast.toggle()
                     return
                 }
                 
                 if self.authUser != nil && !self.authUser!.isEmailVerified {
-                    self.createVolunteerOnMongoDB(userID: authUser!.uid, firstName: firstName, lastName: lastName, email: email)
+                    self.intent.create(firebaseId: authUser!.uid, firstName: firstName, lastName: lastName, email: email)
                     self.authUser!.sendEmailVerification(completion: { (error) in
                         self.emailToCheck = self.authUser!.email!
                         self.currentShowingView = "check"
