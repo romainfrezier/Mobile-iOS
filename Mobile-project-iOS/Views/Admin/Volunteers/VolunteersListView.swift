@@ -11,7 +11,6 @@ import AlertToast
 struct VolunteersListView: View {
     @ObservedObject private var listVM : VolunteerListViewModel
     @EnvironmentObject var currentUser : AuthViewModel
-    
     @State private var intent : VolunteerIntent
     
     @State private var searchText = ""
@@ -80,15 +79,12 @@ struct VolunteersListView: View {
                                 }
                             }
                         }
-                        
-                        Spacer()
-
                     }.refreshable {
                         intent.load()
                     }.scrollContentBackground(.hidden)
                         .navigationDestination(for: VolunteerViewModel.self){
                             vm in
-                            VolunteerDetailView(vm: vm, intent: $intent, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
+                            VolunteerDetailView(vm: vm, intent: intent, availableSlotVM: intent.availableSlotsVM, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
                         }
                 default:
                     CustomEmptyView()

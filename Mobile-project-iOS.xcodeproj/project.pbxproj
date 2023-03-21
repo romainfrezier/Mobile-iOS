@@ -12,6 +12,7 @@
 		A708338229C99E7A002C4CFE /* VolunteerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */; };
 		A708338429C99E90002C4CFE /* VolunteerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338329C99E90002C4CFE /* VolunteerViewModel.swift */; };
 		A708338729C9A140002C4CFE /* VolunteerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338629C9A140002C4CFE /* VolunteerIntent.swift */; };
+		A708338929C9DD7F002C4CFE /* AvailableSlotListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338829C9DD7F002C4CFE /* AvailableSlotListViewModel.swift */; };
 		A752AB6B29C77D3C00CF4E38 /* VolunteerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */; };
 		A752AB6E29C787CE00CF4E38 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */; };
 		A752AB7229C7893300CF4E38 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6F29C7893200CF4E38 /* APIErrors.swift */; };
@@ -68,6 +69,7 @@
 		A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListViewModel.swift; sourceTree = "<group>"; };
 		A708338329C99E90002C4CFE /* VolunteerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerViewModel.swift; sourceTree = "<group>"; };
 		A708338629C9A140002C4CFE /* VolunteerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerIntent.swift; sourceTree = "<group>"; };
+		A708338829C9DD7F002C4CFE /* AvailableSlotListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSlotListViewModel.swift; sourceTree = "<group>"; };
 		A752AB6929C776B200CF4E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteerDTO.swift; sourceTree = "<group>"; };
 		A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */,
 				A708338329C99E90002C4CFE /* VolunteerViewModel.swift */,
+				A708338829C9DD7F002C4CFE /* AvailableSlotListViewModel.swift */,
 			);
 			path = Volunteer;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				A752AB7729C78A7A00CF4E38 /* AuthIntent.swift in Sources */,
 				A762E96929C7517D00B23915 /* ViewExtensions.swift in Sources */,
 				A762E97929C7541B00B23915 /* AppDelegate.swift in Sources */,
+				A708338929C9DD7F002C4CFE /* AvailableSlotListViewModel.swift in Sources */,
 				A762E99829C7598200B23915 /* EmailCheckView.swift in Sources */,
 				A752AB7429C7893300CF4E38 /* APIStates.swift in Sources */,
 				B7618B2A29C9A18F00522551 /* SlotDTO.swift in Sources */,

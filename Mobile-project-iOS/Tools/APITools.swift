@@ -62,7 +62,7 @@ struct APITools {
                 return
             }
             
-            print("Token : ", token)
+//            print("Token : ", token)
             
             let uid = getFirebaseID()
             

@@ -62,7 +62,7 @@ struct FestivalIntent{
     }
     
     func loadAux() async {
-        APITools.loadFromAPI(endpoint: "", callback: self.loadedData)
+        APITools.loadFromAPI(endpoint: "", callback: self.loadedData, apiReturn: returnType.array.rawValue)
     }
     
     func createAux(festival: FestivalDTO) async {

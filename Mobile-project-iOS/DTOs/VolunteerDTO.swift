@@ -80,3 +80,32 @@ class AvailableSlotsDTO : Codable {
         case slot
     }
 }
+
+class AvailableSlotsDetailedDTO : Codable, Hashable, Equatable {
+    
+    static func == (lhs: AvailableSlotsDetailedDTO, rhs: AvailableSlotsDetailedDTO) -> Bool {
+        return lhs.slot.id == rhs.slot.id
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(self.slot.id)
+    }
+    
+    var slot : SlotDTO
+    var zone : ZoneDTO?
+    
+    init(slot: SlotDTO, zone : ZoneDTO?){
+        self.slot = slot
+        self.zone = zone
+    }
+    
+    init(){
+        self.slot = SlotDTO()
+        self.zone = nil
+    }
+    
+    enum CodingKeys : String, CodingKey {
+        case zone
+        case slot
+    }
+}
