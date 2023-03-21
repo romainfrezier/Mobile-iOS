@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A708337D29C99E11002C4CFE /* VolunteersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708337C29C99E11002C4CFE /* VolunteersListView.swift */; };
+		A708337F29C99E2E002C4CFE /* VolunteerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */; };
+		A708338229C99E7A002C4CFE /* VolunteerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */; };
+		A708338429C99E90002C4CFE /* VolunteerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338329C99E90002C4CFE /* VolunteerViewModel.swift */; };
+		A708338729C9A140002C4CFE /* VolunteerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338629C9A140002C4CFE /* VolunteerIntent.swift */; };
 		A752AB6B29C77D3C00CF4E38 /* VolunteerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */; };
 		A752AB6E29C787CE00CF4E38 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */; };
 		A752AB7229C7893300CF4E38 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6F29C7893200CF4E38 /* APIErrors.swift */; };
@@ -58,6 +63,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A708337C29C99E11002C4CFE /* VolunteersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersListView.swift; sourceTree = "<group>"; };
+		A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerDetailView.swift; sourceTree = "<group>"; };
+		A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListViewModel.swift; sourceTree = "<group>"; };
+		A708338329C99E90002C4CFE /* VolunteerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerViewModel.swift; sourceTree = "<group>"; };
+		A708338629C9A140002C4CFE /* VolunteerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerIntent.swift; sourceTree = "<group>"; };
 		A752AB6929C776B200CF4E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteerDTO.swift; sourceTree = "<group>"; };
 		A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -121,6 +131,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A708337A29C99654002C4CFE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A762E98F29C7598100B23915 /* ProfileView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A708337B29C99C0E002C4CFE /* Volunteers */ = {
+			isa = PBXGroup;
+			children = (
+				A708337C29C99E11002C4CFE /* VolunteersListView.swift */,
+				A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */,
+			);
+			path = Volunteers;
+			sourceTree = "<group>";
+		};
+		A708338029C99E66002C4CFE /* Volunteer */ = {
+			isa = PBXGroup;
+			children = (
+				A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */,
+				A708338329C99E90002C4CFE /* VolunteerViewModel.swift */,
+			);
+			path = Volunteer;
+			sourceTree = "<group>";
+		};
+		A708338529C9A0FE002C4CFE /* Volunteer */ = {
+			isa = PBXGroup;
+			children = (
+				A708338629C9A140002C4CFE /* VolunteerIntent.swift */,
+			);
+			path = Volunteer;
+			sourceTree = "<group>";
+		};
 		A752AB6C29C7877700CF4E38 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +233,7 @@
 		A762E95C29C750DE00B23915 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A708337A29C99654002C4CFE /* Common */,
 				A7F0E77929C7C5FC006BC332 /* Volunteer */,
 				A7F0E77829C7C5F6006BC332 /* Admin */,
 				A762E98C29C7595600B23915 /* Auth */,
@@ -202,6 +247,7 @@
 		A762E95D29C750EB00B23915 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A708338029C99E66002C4CFE /* Volunteer */,
 				B7618B1A29C9976500522551 /* Festivals */,
 				A752AB6C29C7877700CF4E38 /* Auth */,
 			);
@@ -211,6 +257,7 @@
 		A762E95E29C7510600B23915 /* Intents */ = {
 			isa = PBXGroup;
 			children = (
+				A708338529C9A0FE002C4CFE /* Volunteer */,
 				A752AB7529C78A5400CF4E38 /* Auth */,
 				B7618B1D29C9980700522551 /* FestivalIntent.swift */,
 			);
@@ -267,7 +314,6 @@
 				A762E98D29C7598100B23915 /* AuthView.swift */,
 				A762E99229C7598200B23915 /* EmailCheckView.swift */,
 				A762E98E29C7598100B23915 /* LoginView.swift */,
-				A762E98F29C7598100B23915 /* ProfileView.swift */,
 				A762E99029C7598100B23915 /* ResetPasswordView.swift */,
 				A762E99129C7598200B23915 /* SignupView.swift */,
 			);
@@ -277,6 +323,7 @@
 		A7F0E77829C7C5F6006BC332 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				A708337B29C99C0E002C4CFE /* Volunteers */,
 				A7F0E77A29C7C622006BC332 /* AdminHomeView.swift */,
 			);
 			path = Admin;
@@ -395,7 +442,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A708337F29C99E2E002C4CFE /* VolunteerDetailView.swift in Sources */,
+				A708338729C9A140002C4CFE /* VolunteerIntent.swift in Sources */,
 				A762E96829C7517D00B23915 /* StringTools.swift in Sources */,
+				A708338229C99E7A002C4CFE /* VolunteerListViewModel.swift in Sources */,
+				A708338429C99E90002C4CFE /* VolunteerViewModel.swift in Sources */,
 				A762E96729C7517D00B23915 /* DateFormatters.swift in Sources */,
 				A762E95129C74E7000B23915 /* MainView.swift in Sources */,
 				A7F0E77729C7B4EE006BC332 /* APIResult.swift in Sources */,
@@ -403,6 +454,7 @@
 				B7618B2829C99FFE00522551 /* DayDTO.swift in Sources */,
 				A762E99629C7598200B23915 /* ResetPasswordView.swift in Sources */,
 				A752AB6B29C77D3C00CF4E38 /* VolunteerDTO.swift in Sources */,
+				A708337D29C99E11002C4CFE /* VolunteersListView.swift in Sources */,
 				A762E99D29C759E300B23915 /* CustomButton.swift in Sources */,
 				A752AB6E29C787CE00CF4E38 /* AuthViewModel.swift in Sources */,
 				A762E99E29C759E300B23915 /* PasswordToggle.swift in Sources */,
@@ -569,6 +621,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -600,6 +653,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

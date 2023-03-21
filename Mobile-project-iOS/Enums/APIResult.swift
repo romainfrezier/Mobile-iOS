@@ -12,3 +12,8 @@ enum APIResult<T> {
     case successList([T])
     case failure(Error)
 }
+
+enum returnType: String {
+    case array = "array"
+    case object = "object"
+}

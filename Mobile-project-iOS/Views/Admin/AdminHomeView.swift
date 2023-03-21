@@ -12,12 +12,16 @@ struct AdminHomeView: View {
     @Binding var isLoggedIn : Bool
     var body: some View {
         TabView {
+            VolunteersListView().tabItem {
+                Label("Bénévoles", systemImage: "person.2.fill")
+            }.environmentObject(currentUser)
+            
             CustomEmptyView().tabItem{
                 Label("Festivals", systemImage: "party.popper.fill")
             }
             
             ProfileView(isLoggedIn: $isLoggedIn).tabItem{
-                Label("Profil", systemImage: "person.fill")
+                Label("Profil", systemImage: "person.crop.circle.fill")
             }.environmentObject(currentUser)
         }
     }

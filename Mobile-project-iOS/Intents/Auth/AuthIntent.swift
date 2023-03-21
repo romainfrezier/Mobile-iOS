@@ -20,10 +20,17 @@ struct AuthIntent {
         self.authVM = AuthViewModel()
     }
 
-    func load(uid: String) {
+    func load(firebaseId: String) {
         authVM.state = .loading
         Task {
-            await self.loadAux(uid: uid)
+            await self.loadAux(firebaseId: firebaseId)
+        }
+    }
+    
+    func create(firebaseId : String, firstName : String, lastName : String, email : String){
+        authVM.state = .creating
+        Task {
+            await self.createAux(firebaseId : firebaseId, firstName : firstName, lastName : lastName, email : email);
         }
     }
     
@@ -37,8 +44,19 @@ struct AuthIntent {
         }
     }
     
-    func loadAux(uid: String) async {
-        APITools.loadFromAPI(endpoint: "volunteers/firebase/" + uid, callback: self.loadedData)
+    func loadAux(firebaseId: String) async {
+        APITools.loadFromAPI(endpoint: "volunteers/firebase/" + firebaseId, callback: self.loadedData, apiReturn: returnType.object.rawValue)
+    }
+    
+    func createAux(firebaseId : String, firstName : String, lastName : String, email : String) async {
+        let body : [String : Any] = [
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "firebaseId": firebaseId
+        ]
+        APITools.createOnAPI(endpoint: "volunteers", body: body)
+        self.authVM.state = .idle
     }
 }
 
