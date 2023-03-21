@@ -200,7 +200,11 @@ struct SignupView: View {
         if(StringTools.isValidPassword(password: password) && confirmPassword == password && StringTools.isValidEmail(email: email)) {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let error = error {
-                    errorMessage = "Une erreur est survenue"
+                    if (error.localizedDescription.contains("The email address is already in use by another account.")) {
+                        errorMessage = "Un compte est déjà associé à cet e-mail."
+                    } else {
+                        errorMessage = "Une erreur est survenue"
+                    }
                     print(error)
                     showErrorToast.toggle()
                     return
