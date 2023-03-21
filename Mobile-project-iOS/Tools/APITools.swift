@@ -62,6 +62,8 @@ struct APITools {
                 return
             }
             
+            print("Token : ", token)
+            
             let uid = getFirebaseID()
             
             var request = URLRequest(url: url)

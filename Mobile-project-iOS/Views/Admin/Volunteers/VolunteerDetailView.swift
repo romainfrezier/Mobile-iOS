@@ -21,6 +21,45 @@ struct VolunteerDetailView: View {
     @Binding var showSuccessToast : Bool
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack {
+                HStack {
+                    Text(vm.volunteer.firstName).font(.title).bold()
+                    Text(vm.volunteer.lastName).font(.title).bold()
+                    Spacer()
+                }.padding()
+                
+                Spacer()
+                
+                HStack {
+                    Image(systemName: "info.circle.fill")
+                    Text("Informations")
+                    Spacer()
+                }.padding([.leading, .trailing])
+                VStack {
+                    HStack {
+                        Text("Email :").bold()
+                        Text(vm.volunteer.emailAddress)
+                        Spacer()
+                    }.padding([.leading, .top])
+                    HStack {
+                        Text("Festival :").bold()
+                        Text(vm.volunteer.festivalId ?? "Pas de festival")
+                        Spacer()
+                    }.padding([.leading, .top])
+                    HStack {
+                        Text(vm.volunteer.isAdmin ? "Ce bénévole est un admin." : "")
+                        Spacer()
+                    }.padding([.leading, .top, .bottom])
+                }.background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                ).padding([.leading, .trailing])
+                
+                
+                Spacer()
+                
+            }
+        }
     }
 }
