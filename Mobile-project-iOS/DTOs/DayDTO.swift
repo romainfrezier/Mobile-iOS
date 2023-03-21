@@ -10,24 +10,36 @@ import Foundation
 struct DayDTO : Codable {
     var id : String
     var name : String
-    var volunteersNumber : Int
+    var hours : HoursDTO
+    var slots : Array<SlotDTO>
     
     init(){
         self.id = ""
         self.name = ""
-        self.volunteersNumber = 0
+        self.hours = HoursDTO()
+        self.slots = []
     }
     
-    init(id: String, name: String, volunteersNumber: Int){
+    init(id: String, name: String, hours: HoursDTO, slots: Array<SlotDTO>){
         self.id = id
         self.name = name
-        self.volunteersNumber = volunteersNumber
+        self.hours = hours
+        self.slots = slots
+    }
+    
+    func getBody() -> [String : Any] {
+        return [
+            "name": self.name,
+            "hours": self.hours,
+            "slots": self.slots
+        ]
     }
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case name
-        case volunteersNumber
+        case hours
+        case slots
     }
 }
 

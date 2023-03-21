@@ -36,13 +36,13 @@ class FestivalDTO : Codable {
     }
     
     func getBody() -> [String : Any] {
-        let zonesBody: [Any] = []
+        var zonesBody: [[String : Any]] = []
         for zone in zones {
-            zonesBody.append(zone.getObject())
+            zonesBody.append(zone.getBody())
         }
-        let daysBody: [Any] = []
+        var daysBody: [[String : Any]] = []
         for day in days {
-            daysBody.append(day.getObject())
+            daysBody.append(day.getBody())
         }
         return [
             "name": self.name,

@@ -31,12 +31,7 @@ struct ZoneDTO : Codable {
         ]
     }
     
-    func getObject() -> {String : Any} {
-        return [
-            "nom": self.name,
-            "type": self.type ?? "",
-        ]
-    }
+    
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
