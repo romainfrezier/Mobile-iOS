@@ -20,6 +20,8 @@ class FestivalViewModel: ObservableObject, Decodable, Hashable, Equatable {
     @Published var state: APIStates<FestivalDTO> = .idle {
         didSet{
             switch state {
+            case .loadOne(let festival):
+                self.festival = festival
             case .failed(let error):
                 print("failed: \(error)")
             default:
@@ -37,7 +39,7 @@ class FestivalViewModel: ObservableObject, Decodable, Hashable, Equatable {
         self.festival = FestivalDTO()
     }
     
-    init(id: String, name: String, zones: Array<ZoneDTO>, days: Array<DayDTO>) {
+    init(id: String, name: String, zones: Array<String>, days: Array<String>) {
         self.id = id
         self.festival = FestivalDTO(id: id, name: name, zones: zones, days: days)
     }
@@ -45,8 +47,8 @@ class FestivalViewModel: ObservableObject, Decodable, Hashable, Equatable {
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: FestivalDTO.CodingKeys.self)
         let name = try values.decode(String.self, forKey: .name)
-        let zones = try values.decode(Array<ZoneDTO>.self, forKey: .zones)
-        let days = try values.decode(Array<DayDTO>.self, forKey: .days)
+        let zones = try values.decode(Array<String>.self, forKey: .zones)
+        let days = try values.decode(Array<String>.self, forKey: .days)
         id = try values.decode(String.self, forKey: .id)
         festival = FestivalDTO(id: id, name: name, zones: zones, days: days)
     }

@@ -16,7 +16,7 @@ struct AdminHomeView: View {
                 Label("Bénévoles", systemImage: "person.2.fill")
             }.environmentObject(currentUser)
             
-            CustomEmptyView().tabItem{
+            FestivalsListView().tabItem{
                 Label("Festivals", systemImage: "party.popper.fill")
             }
             

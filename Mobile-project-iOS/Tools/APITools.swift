@@ -69,7 +69,7 @@ struct APITools {
             request.addValue(token, forHTTPHeaderField: "authtoken")
             request.addValue(uid, forHTTPHeaderField: "requester")
             
-//            print("Token : ", token)
+            print("Token : ", token)
             print("URL :", request.url ?? "Pas d'url")
 
             
