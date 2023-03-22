@@ -38,4 +38,8 @@ struct ZoneDTO : Codable {
         case name
         case volunteersNumber
     }
+    
+    func toString() -> String {
+        String(describing: self)
+    }
 }

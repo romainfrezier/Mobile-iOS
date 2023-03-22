@@ -20,8 +20,6 @@ class VolunteerViewModel: ObservableObject, Decodable, Hashable, Equatable {
     @Published var state: APIStates<VolunteerDTO> = .idle {
         didSet{
             switch state {
-            case .loading :
-                print("Loading...")
             case.loadOne(let volunteer):
                 self.volunteer = volunteer
                 self.state = .idle

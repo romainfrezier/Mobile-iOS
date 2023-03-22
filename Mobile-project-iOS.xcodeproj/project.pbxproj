@@ -11,8 +11,15 @@
 		A708337F29C99E2E002C4CFE /* VolunteerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */; };
 		A708338229C99E7A002C4CFE /* VolunteerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */; };
 		A708338429C99E90002C4CFE /* VolunteerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338329C99E90002C4CFE /* VolunteerViewModel.swift */; };
-		A708338729C9A140002C4CFE /* VolunteerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338629C9A140002C4CFE /* VolunteerIntent.swift */; };
-		A708338929C9DD7F002C4CFE /* AvailableSlotListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338829C9DD7F002C4CFE /* AvailableSlotListViewModel.swift */; };
+		A708338729C9A140002C4CFE /* VolunteerListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338629C9A140002C4CFE /* VolunteerListIntent.swift */; };
+		A723AF8729CB23A900EEAD5D /* VolunteerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF8629CB23A900EEAD5D /* VolunteerIntent.swift */; };
+		A723AF8B29CB598500EEAD5D /* AvailableSlotsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF8A29CB598500EEAD5D /* AvailableSlotsListViewModel.swift */; };
+		A723AF8D29CB59C900EEAD5D /* AvailableSlotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF8C29CB59C900EEAD5D /* AvailableSlotViewModel.swift */; };
+		A723AF9129CB663C00EEAD5D /* AvailableSlotsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF9029CB663C00EEAD5D /* AvailableSlotsListView.swift */; };
+		A723AF9429CB669100EEAD5D /* AvailableSlotsListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF9329CB669100EEAD5D /* AvailableSlotsListIntent.swift */; };
+		A723AF9829CB7D4400EEAD5D /* ZonesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF9629CB7D4400EEAD5D /* ZonesListViewModel.swift */; };
+		A723AF9929CB7D4400EEAD5D /* ZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF9729CB7D4400EEAD5D /* ZoneViewModel.swift */; };
+		A723AF9C29CB7F0100EEAD5D /* ZonesListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF9B29CB7F0100EEAD5D /* ZonesListIntent.swift */; };
 		A752AB6B29C77D3C00CF4E38 /* VolunteerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */; };
 		A752AB6E29C787CE00CF4E38 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */; };
 		A752AB7229C7893300CF4E38 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6F29C7893200CF4E38 /* APIErrors.swift */; };
@@ -68,8 +75,15 @@
 		A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerDetailView.swift; sourceTree = "<group>"; };
 		A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListViewModel.swift; sourceTree = "<group>"; };
 		A708338329C99E90002C4CFE /* VolunteerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerViewModel.swift; sourceTree = "<group>"; };
-		A708338629C9A140002C4CFE /* VolunteerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerIntent.swift; sourceTree = "<group>"; };
-		A708338829C9DD7F002C4CFE /* AvailableSlotListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSlotListViewModel.swift; sourceTree = "<group>"; };
+		A708338629C9A140002C4CFE /* VolunteerListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListIntent.swift; sourceTree = "<group>"; };
+		A723AF8629CB23A900EEAD5D /* VolunteerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerIntent.swift; sourceTree = "<group>"; };
+		A723AF8A29CB598500EEAD5D /* AvailableSlotsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSlotsListViewModel.swift; sourceTree = "<group>"; };
+		A723AF8C29CB59C900EEAD5D /* AvailableSlotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSlotViewModel.swift; sourceTree = "<group>"; };
+		A723AF9029CB663C00EEAD5D /* AvailableSlotsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSlotsListView.swift; sourceTree = "<group>"; };
+		A723AF9329CB669100EEAD5D /* AvailableSlotsListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSlotsListIntent.swift; sourceTree = "<group>"; };
+		A723AF9629CB7D4400EEAD5D /* ZonesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZonesListViewModel.swift; sourceTree = "<group>"; };
+		A723AF9729CB7D4400EEAD5D /* ZoneViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneViewModel.swift; sourceTree = "<group>"; };
+		A723AF9B29CB7F0100EEAD5D /* ZonesListIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZonesListIntent.swift; sourceTree = "<group>"; };
 		A752AB6929C776B200CF4E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteerDTO.swift; sourceTree = "<group>"; };
 		A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -144,6 +158,7 @@
 		A708337B29C99C0E002C4CFE /* Volunteers */ = {
 			isa = PBXGroup;
 			children = (
+				A723AF8F29CB661800EEAD5D /* AvailableSlots */,
 				A708337C29C99E11002C4CFE /* VolunteersListView.swift */,
 				A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */,
 			);
@@ -153,9 +168,9 @@
 		A708338029C99E66002C4CFE /* Volunteer */ = {
 			isa = PBXGroup;
 			children = (
+				A723AF8E29CB65A700EEAD5D /* AvailableSlots */,
 				A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */,
 				A708338329C99E90002C4CFE /* VolunteerViewModel.swift */,
-				A708338829C9DD7F002C4CFE /* AvailableSlotListViewModel.swift */,
 			);
 			path = Volunteer;
 			sourceTree = "<group>";
@@ -163,9 +178,53 @@
 		A708338529C9A0FE002C4CFE /* Volunteer */ = {
 			isa = PBXGroup;
 			children = (
-				A708338629C9A140002C4CFE /* VolunteerIntent.swift */,
+				A723AF9229CB667300EEAD5D /* AvailableSlots */,
+				A708338629C9A140002C4CFE /* VolunteerListIntent.swift */,
+				A723AF8629CB23A900EEAD5D /* VolunteerIntent.swift */,
 			);
 			path = Volunteer;
+			sourceTree = "<group>";
+		};
+		A723AF8E29CB65A700EEAD5D /* AvailableSlots */ = {
+			isa = PBXGroup;
+			children = (
+				A723AF8A29CB598500EEAD5D /* AvailableSlotsListViewModel.swift */,
+				A723AF8C29CB59C900EEAD5D /* AvailableSlotViewModel.swift */,
+			);
+			path = AvailableSlots;
+			sourceTree = "<group>";
+		};
+		A723AF8F29CB661800EEAD5D /* AvailableSlots */ = {
+			isa = PBXGroup;
+			children = (
+				A723AF9029CB663C00EEAD5D /* AvailableSlotsListView.swift */,
+			);
+			path = AvailableSlots;
+			sourceTree = "<group>";
+		};
+		A723AF9229CB667300EEAD5D /* AvailableSlots */ = {
+			isa = PBXGroup;
+			children = (
+				A723AF9329CB669100EEAD5D /* AvailableSlotsListIntent.swift */,
+			);
+			path = AvailableSlots;
+			sourceTree = "<group>";
+		};
+		A723AF9529CB7CFD00EEAD5D /* Zones */ = {
+			isa = PBXGroup;
+			children = (
+				A723AF9629CB7D4400EEAD5D /* ZonesListViewModel.swift */,
+				A723AF9729CB7D4400EEAD5D /* ZoneViewModel.swift */,
+			);
+			path = Zones;
+			sourceTree = "<group>";
+		};
+		A723AF9A29CB7EEC00EEAD5D /* Zones */ = {
+			isa = PBXGroup;
+			children = (
+				A723AF9B29CB7F0100EEAD5D /* ZonesListIntent.swift */,
+			);
+			path = Zones;
 			sourceTree = "<group>";
 		};
 		A752AB6C29C7877700CF4E38 /* Auth */ = {
@@ -250,6 +309,7 @@
 		A762E95D29C750EB00B23915 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A723AF9529CB7CFD00EEAD5D /* Zones */,
 				A708338029C99E66002C4CFE /* Volunteer */,
 				B7618B1A29C9976500522551 /* Festivals */,
 				A752AB6C29C7877700CF4E38 /* Auth */,
@@ -260,6 +320,7 @@
 		A762E95E29C7510600B23915 /* Intents */ = {
 			isa = PBXGroup;
 			children = (
+				A723AF9A29CB7EEC00EEAD5D /* Zones */,
 				A708338529C9A0FE002C4CFE /* Volunteer */,
 				A752AB7529C78A5400CF4E38 /* Auth */,
 				B7618B1D29C9980700522551 /* FestivalIntent.swift */,
@@ -446,16 +507,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A708337F29C99E2E002C4CFE /* VolunteerDetailView.swift in Sources */,
-				A708338729C9A140002C4CFE /* VolunteerIntent.swift in Sources */,
+				A723AF9429CB669100EEAD5D /* AvailableSlotsListIntent.swift in Sources */,
+				A708338729C9A140002C4CFE /* VolunteerListIntent.swift in Sources */,
 				A762E96829C7517D00B23915 /* StringTools.swift in Sources */,
 				A708338229C99E7A002C4CFE /* VolunteerListViewModel.swift in Sources */,
 				A708338429C99E90002C4CFE /* VolunteerViewModel.swift in Sources */,
 				A762E96729C7517D00B23915 /* DateFormatters.swift in Sources */,
 				A762E95129C74E7000B23915 /* MainView.swift in Sources */,
 				A7F0E77729C7B4EE006BC332 /* APIResult.swift in Sources */,
+				A723AF8D29CB59C900EEAD5D /* AvailableSlotViewModel.swift in Sources */,
 				A752AB7229C7893300CF4E38 /* APIErrors.swift in Sources */,
 				B7618B2829C99FFE00522551 /* DayDTO.swift in Sources */,
 				A762E99629C7598200B23915 /* ResetPasswordView.swift in Sources */,
+				A723AF8729CB23A900EEAD5D /* VolunteerIntent.swift in Sources */,
 				A752AB6B29C77D3C00CF4E38 /* VolunteerDTO.swift in Sources */,
 				A708337D29C99E11002C4CFE /* VolunteersListView.swift in Sources */,
 				A762E99D29C759E300B23915 /* CustomButton.swift in Sources */,
@@ -470,20 +534,24 @@
 				B7618B1829C996E600522551 /* FestivalListView.swift in Sources */,
 				A7F0E77D29C7C630006BC332 /* VolunteerHomeView.swift in Sources */,
 				A762E9A129C75A2500B23915 /* LoggedInView.swift in Sources */,
+				A723AF8B29CB598500EEAD5D /* AvailableSlotsListViewModel.swift in Sources */,
 				A752AB7729C78A7A00CF4E38 /* AuthIntent.swift in Sources */,
+				A723AF9129CB663C00EEAD5D /* AvailableSlotsListView.swift in Sources */,
 				A762E96929C7517D00B23915 /* ViewExtensions.swift in Sources */,
 				A762E97929C7541B00B23915 /* AppDelegate.swift in Sources */,
-				A708338929C9DD7F002C4CFE /* AvailableSlotListViewModel.swift in Sources */,
 				A762E99829C7598200B23915 /* EmailCheckView.swift in Sources */,
 				A752AB7429C7893300CF4E38 /* APIStates.swift in Sources */,
+				A723AF9929CB7D4400EEAD5D /* ZoneViewModel.swift in Sources */,
 				B7618B2A29C9A18F00522551 /* SlotDTO.swift in Sources */,
 				A762E98929C758CD00B23915 /* env.swift in Sources */,
 				A762E96A29C7517D00B23915 /* APITools.swift in Sources */,
 				A762E94F29C74E7000B23915 /* Mobile_project_iOSApp.swift in Sources */,
+				A723AF9C29CB7F0100EEAD5D /* ZonesListIntent.swift in Sources */,
 				A762E99429C7598200B23915 /* LoginView.swift in Sources */,
 				A762E99529C7598200B23915 /* ProfileView.swift in Sources */,
 				B7618B2029C99AE700522551 /* FestivalViewModel.swift in Sources */,
 				B7618B2429C99C5200522551 /* FestivalDTO.swift in Sources */,
+				A723AF9829CB7D4400EEAD5D /* ZonesListViewModel.swift in Sources */,
 				A762E99729C7598200B23915 /* SignupView.swift in Sources */,
 				B7618B1E29C9980700522551 /* FestivalIntent.swift in Sources */,
 				A762E99329C7598200B23915 /* AuthView.swift in Sources */,

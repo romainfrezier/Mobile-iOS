@@ -11,7 +11,6 @@ struct VolunteerDetailView: View {
     
     @ObservedObject var vm : VolunteerViewModel;
     @State var intent : VolunteerIntent;
-    @ObservedObject var availableSlotVM : AvailableSlotListViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -21,8 +20,18 @@ struct VolunteerDetailView: View {
     @Binding var successMessage : String
     @Binding var showSuccessToast : Bool
     
+    @State var festivalID : String?
+
+    init(vm:VolunteerViewModel, successMessage: Binding<String>, showSuccessToast: Binding<Bool>, festivalID: String?) {
+        self.vm = vm
+        self._intent = State(initialValue: VolunteerIntent(volunteerVM: vm))
+        self._successMessage = successMessage
+        self._showSuccessToast = showSuccessToast
+        self._festivalID = State(initialValue: festivalID)
+    }
+    
     var body: some View {
-        ScrollView {
+        VStack {
             switch vm.state {
             case .loading :
                 VStack {
@@ -38,13 +47,11 @@ struct VolunteerDetailView: View {
                         Spacer()
                     }.padding()
                     
-                    Spacer()
-                    
                     HStack {
                         Image(systemName: "info.circle.fill")
                         Text("Informations")
                         Spacer()
-                    }.padding([.leading, .trailing])
+                    }.padding([.leading, .trailing, .top])
                     VStack {
                         HStack {
                             Text("Email :").bold()
@@ -70,54 +77,28 @@ struct VolunteerDetailView: View {
                         Text("Disponibilités")
                         Spacer()
                     }.padding([.leading, .trailing])
-                    
                     HStack {
-                        switch availableSlotVM.state {
-                        case .loading :
-                            Spacer()
-                            ProgressView()
-                            Spacer()
-                        case .idle :
-                            if (availableSlotVM.availableSlots == []) {
-                                Text("Aucune disponibilité").padding()
-                            } else {
-                                List{
-                                    ForEach(availableSlotVM.availableSlots, id: \.self) {
-                                        slot in VStack(alignment: .leading) {
-                                            HStack {
-                                                Text(DateFormatters.shortDate().string(from: slot.slot.start))
-                                                Text(" - ")
-                                                Text(DateFormatters.shortDate().string(from: slot.slot.end))
-                                            }
-                                        }
-                                    }
-                                }.padding()
-                            }
-                        default:
-                            CustomEmptyView()
-                        }
+                        Spacer().frame(width: 30)
+                        Text("Swipez pour affecter ou libérer le bénévole").font(.caption).italic()
                         Spacer()
-                    }.background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray, lineWidth: 1)
-                    ).padding([.leading, .trailing, .bottom])
+                    }.padding([.leading, .trailing])
+                    
+                    AvailableSlotsListView(id: vm.volunteer.id, festival: festivalID)
                     
                     Spacer()
                     
                     if (!vm.volunteer.isAdmin){
                         CustomButton(text: "Passer admin", action: makeAdmin)
                     }
+                    
+                    Spacer()
                 }
             default:
                 CustomEmptyView()
             }
+            Spacer()
         }.onAppear{
-            intent.setAvailableSlots(availableSlotsVM: self.availableSlotVM)
             intent.loadOne(id: vm.volunteer.id)
-            intent.loadAvailableSlots(id: vm.volunteer.id)
-        }.refreshable {
-            intent.loadOne(id: vm.volunteer.id)
-            intent.loadAvailableSlots(id: vm.volunteer.id)
         }
     }
     

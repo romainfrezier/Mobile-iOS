@@ -11,12 +11,11 @@ import AlertToast
 struct VolunteersListView: View {
     @ObservedObject private var listVM : VolunteerListViewModel
     @EnvironmentObject var currentUser : AuthViewModel
-    @State private var intent : VolunteerIntent
+    @State private var intent : VolunteerListIntent
     
     @State private var searchText = ""
     @State private var selectedSortOption: SortOptions = .nameAscending
     
-//    @State private var showConfirmationDialog = false
     @State private var selectedIndexes : IndexSet = IndexSet()
     
     @State private var errorMessage : String = ""
@@ -27,7 +26,7 @@ struct VolunteersListView: View {
     
     init() {
         self.listVM = VolunteerListViewModel()
-        self._intent = State(initialValue: VolunteerIntent(vm: self._listVM.wrappedValue))
+        self._intent = State(initialValue: VolunteerListIntent(volunteerListVM: self._listVM.wrappedValue))
     }
     
     var body: some View {
@@ -38,12 +37,15 @@ struct VolunteersListView: View {
                     Text("Bénévoles").font(.title).fontWeight(.bold)
                     Spacer()
                     Menu {
-                        Button("Nom A-Z\(self.selectedSortOption == .nameAscending ? " ✓" : "")"){self.selectedSortOption = .nameAscending}.buttonStyle(PlainButtonStyle())
-                        Button("Nom Z-A \(self.selectedSortOption == .nameDescending ? " ✓" : "")"){self.selectedSortOption = .nameDescending}.buttonStyle(PlainButtonStyle())
-                        Button("Type A-Z\(self.selectedSortOption == .typeAscending ? " ✓" : "")"){self.selectedSortOption = .typeAscending}.buttonStyle(PlainButtonStyle())
-                        Button("Type Z-A\(self.selectedSortOption == .typeDescending ? " ✓" : "")"){self.selectedSortOption = .typeDescending}.buttonStyle(PlainButtonStyle())
+                        Button("Prénom A-Z\(self.selectedSortOption == .firstNameAscending ? " ✓" : "")"){self.selectedSortOption = .firstNameAscending}.buttonStyle(PlainButtonStyle())
+                        Button("Prénom Z-A \(self.selectedSortOption == .firstNameDescending ? " ✓" : "")"){self.selectedSortOption = .firstNameDescending}.buttonStyle(PlainButtonStyle())
+                        Button("Nom A-Z\(self.selectedSortOption == .lastNameAscending ? " ✓" : "")"){self.selectedSortOption = .lastNameAscending}.buttonStyle(PlainButtonStyle())
+                        Button("Nom Z-A\(self.selectedSortOption == .lastNameDescending ? " ✓" : "")"){self.selectedSortOption = .lastNameDescending}.buttonStyle(PlainButtonStyle())
                     } label: {
-                        Image(systemName: "arrow.up.arrow.down")
+                        HStack {
+                            Text("Trier")
+                            Image(systemName: "arrow.up.arrow.down")
+                        }
                     }
                     Spacer().frame(width: 30)
                     
@@ -84,7 +86,7 @@ struct VolunteersListView: View {
                     }.scrollContentBackground(.hidden)
                         .navigationDestination(for: VolunteerViewModel.self){
                             vm in
-                            VolunteerDetailView(vm: vm, intent: intent, availableSlotVM: intent.availableSlotsVM, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
+                            VolunteerDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast, festivalID: vm.volunteer.festivalId)
                         }
                 default:
                     CustomEmptyView()

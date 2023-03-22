@@ -61,4 +61,8 @@ class HoursDTO : Codable {
         case opening
         case closing
     }
+    
+    func toString() -> String {
+        String(describing: self)
+    }
 }

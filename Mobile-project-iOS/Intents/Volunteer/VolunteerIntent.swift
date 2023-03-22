@@ -2,7 +2,7 @@
 //  VolunteerIntent.swift
 //  Mobile-project-iOS
 //
-//  Created by Romain on 21/03/2023.
+//  Created by Romain on 22/03/2023.
 //
 
 import Foundation
@@ -11,34 +11,12 @@ import SwiftUI
 struct VolunteerIntent {
     
     @ObservedObject private var volunteerVM : VolunteerViewModel
-    @ObservedObject private var volunteerListVM : VolunteerListViewModel
-    @ObservedObject var availableSlotsVM : AvailableSlotListViewModel
     
-    
-    init(volunteerVM: VolunteerViewModel, volunteerListVM : VolunteerListViewModel, availableSlots: AvailableSlotListViewModel){
+    init(volunteerVM : VolunteerViewModel) {
         self.volunteerVM = volunteerVM
-        self.volunteerListVM = volunteerListVM
-        self.availableSlotsVM = availableSlots
     }
     
-    init(vm: VolunteerListViewModel) {
-        self.volunteerListVM = vm
-        self.volunteerVM = VolunteerViewModel()
-        self.availableSlotsVM = AvailableSlotListViewModel()
-    }
-    
-    mutating func setAvailableSlots(availableSlotsVM : AvailableSlotListViewModel){
-        self.availableSlotsVM = availableSlotsVM
-    }
-
-    func load() {
-        volunteerListVM.state = .loading
-        Task {
-            await self.loadAux()
-        }
-    }
-    
-    func loadOne(id: String){
+    func loadOne(id: String) {
         volunteerVM.state = .loading
         Task {
             await self.loadOneAux(id: id)
@@ -58,22 +36,7 @@ struct VolunteerIntent {
             await self.deleteAux(id: id)
         }
     }
-    
-    // MARK: - Aux async function to call API
-    func loadedDataAux(result : APIResult<VolunteerViewModel>){
-        switch result {
-        case .successList(let volunteers):
-            volunteerListVM.state = .load(volunteers)
-        default:
-            volunteerListVM.state = .failed(.apiError)
-        }
-        
-    }
-    
-    func loadAux() async {
-        APITools.loadFromAPI(endpoint: "volunteers", callback: self.loadedDataAux, apiReturn: returnType.array.rawValue)
-    }
-    
+
     func loadedOneDataAux(result : APIResult<VolunteerDTO>){
         switch result {
         case .success(let volunteer):
@@ -99,26 +62,6 @@ struct VolunteerIntent {
         volunteerVM.state = .idle
     }
     
-    func loadedAvailableSlots(result: APIResult<AvailableSlotsDetailedDTO>){
-        switch result {
-        case .successList(let values) :
-            availableSlotsVM.state = .load(values)
-        default:
-            availableSlotsVM.state = .failed(.apiError)
-        }
-    }
-    
-    func loadAvailableSlots(id : String){
-        availableSlotsVM.state = .loading
-        Task {
-            await loadAvailableSlotsAux(id: id)
-        }
-    }
-    
-    func loadAvailableSlotsAux(id : String) async {
-        APITools.loadFromAPI(endpoint: "volunteers/availableSlots/" + id, callback: loadedAvailableSlots, apiReturn: returnType.array.rawValue)
-    }
-    
     func makeAdmin(id : String){
         volunteerVM.state = .loading
         Task {
@@ -130,5 +73,4 @@ struct VolunteerIntent {
     func makeAdminAux(id: String) async {
         APITools.updateOnAPI(endpoint: "volunteers/admin", id: id, body: [:])
     }
-
 }

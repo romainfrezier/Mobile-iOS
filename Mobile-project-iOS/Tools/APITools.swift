@@ -61,15 +61,17 @@ struct APITools {
                 print("Token is nil")
                 return
             }
-            
-//            print("Token : ", token)
-            
+                        
             let uid = getFirebaseID()
             
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue(token, forHTTPHeaderField: "authtoken")
             request.addValue(uid, forHTTPHeaderField: "requester")
+            
+//            print("Token : ", token)
+            print("URL :", request.url ?? "Pas d'url")
+
             
             URLSession.shared.dataTask(with: request) { (data, res, error) in
                 if error != nil {
@@ -88,7 +90,6 @@ struct APITools {
                             decoder.dateDecodingStrategy = .formatted(dateFormatter)
                             
                             let result : [T] = try decoder.decode([T].self, from: data)
-                            print(result)
                             DispatchQueue.main.async {
                                 callback(.successList(result))
                             }

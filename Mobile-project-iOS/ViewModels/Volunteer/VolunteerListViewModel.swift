@@ -18,7 +18,7 @@ class VolunteerListViewModel: ObservableObject {
             case .failed(let error):
                 print("failed: \(error)")
             default:
-                print("VolunteerListViewModel state : \(self.state)")
+                print("VolunteerListViewModel state : \(self.state.description)")
                 break
             }
         }

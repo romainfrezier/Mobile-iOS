@@ -11,7 +11,7 @@ struct SlotDTO : Codable {
     var id : String
     var start : Date
     var end : Date
-    var volunteers: Array<VolunteerDTO>
+    var volunteers: Array<String>
     
     init(){
         self.id = ""
@@ -20,7 +20,7 @@ struct SlotDTO : Codable {
         self.volunteers = []
     }
     
-    init(id: String, start: Date, end: Date, volunteers: Array<VolunteerDTO>){
+    init(id: String, start: Date, end: Date, volunteers: Array<String>){
         self.id = id
         self.start = start
         self.end = end
@@ -32,5 +32,9 @@ struct SlotDTO : Codable {
         case start
         case end
         case volunteers
+    }
+    
+    func toString() -> String {
+        String(describing: self)
     }
 }

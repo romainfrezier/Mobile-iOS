@@ -7,7 +7,7 @@
 
 import Foundation
 
-class VolunteerDTO : Codable {
+struct VolunteerDTO : Codable {
     var id : String
     var firstName : String
     var lastName : String
@@ -59,29 +59,41 @@ class VolunteerDTO : Codable {
             "availableSlots" : self.availableSlots
         ]
     }
+    
+    func toString() -> String {
+        String(describing: self)
+    }
 }
 
-class AvailableSlotsDTO : Codable {
+struct AvailableSlotsDTO : Codable {
+    var id: String
     var slot: String
     var zone: String?
     
-    init(slot: String, zone : String?){
+    init(id: String, slot: String, zone : String?){
         self.slot = slot
         self.zone = zone
+        self.id = id
     }
     
     init(){
+        self.id = ""
         self.slot = ""
         self.zone = nil
     }
     
     enum CodingKeys : String, CodingKey {
+        case id = "_id"
         case zone
         case slot
     }
+    
+    func toString() -> String {
+        String(describing: self)
+    }
 }
 
-class AvailableSlotsDetailedDTO : Codable, Hashable, Equatable {
+struct AvailableSlotsDetailedDTO : Codable, Hashable, Equatable {
     
     static func == (lhs: AvailableSlotsDetailedDTO, rhs: AvailableSlotsDetailedDTO) -> Bool {
         return lhs.slot.id == rhs.slot.id
@@ -93,13 +105,16 @@ class AvailableSlotsDetailedDTO : Codable, Hashable, Equatable {
     
     var slot : SlotDTO
     var zone : ZoneDTO?
+    var id : String
     
-    init(slot: SlotDTO, zone : ZoneDTO?){
+    init(id: String, slot: SlotDTO, zone : ZoneDTO?){
         self.slot = slot
         self.zone = zone
+        self.id = id
     }
     
     init(){
+        self.id = ""
         self.slot = SlotDTO()
         self.zone = nil
     }
@@ -107,5 +122,10 @@ class AvailableSlotsDetailedDTO : Codable, Hashable, Equatable {
     enum CodingKeys : String, CodingKey {
         case zone
         case slot
+        case id = "_id"
+    }
+    
+    func toString() -> String {
+        String(describing: self)
     }
 }
