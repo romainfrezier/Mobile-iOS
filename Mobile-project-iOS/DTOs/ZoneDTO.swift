@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ZoneDTO : Codable {
+struct ZoneDTO : Codable, Hashable {
     var id : String
     var name : String
     var volunteersNumber : Int
@@ -31,7 +31,9 @@ struct ZoneDTO : Codable {
         ]
     }
     
-    
+    func hash(into hasher: inout Hasher){
+      hasher.combine(self.id)
+    }
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"

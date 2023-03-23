@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SlotDTO : Codable {
+struct SlotDTO : Codable, Hashable {
     var id : String
     var start : Date
     var end : Date
@@ -25,6 +25,10 @@ struct SlotDTO : Codable {
         self.start = start
         self.end = end
         self.volunteers = volunteers
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(self.id)
     }
     
     enum CodingKeys: String, CodingKey {

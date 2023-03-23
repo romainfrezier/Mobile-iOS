@@ -2,7 +2,7 @@
 //  FestivalIntent.swift
 //  Mobile-project-iOS
 //
-//  Created by Romain on 22/03/2023.
+//  Created by Romain on 23/03/2023.
 //
 
 import Foundation
@@ -30,10 +30,17 @@ struct FestivalIntent {
         }
     }
     
-    func update(festival: FestivalDetailedDTO) {
+    func updateName(festivalID: String, newName: String) {
         festivalVM.state = .updating
         Task {
-            await self.updateAux(festival: festival)
+            await self.updateNameAux(festivalID: festivalID, newName: newName)
+        }
+    }
+    
+    func deleteZone(id: String) {
+        festivalVM.state = .deleting
+        Task {
+            await self.deleteZoneAux(id: id)
         }
     }
     
@@ -59,10 +66,15 @@ struct FestivalIntent {
         festivalVM.state = .idle
     }
 
-    func updateAux(festival: FestivalDetailedDTO) async {
-//        let data : [String: Any] = festival.getBody()
-        let data : [String: Any] = [:]
-        APITools.updateOnAPI(endpoint: "festivals", id: festival.id, body: data)
+    func updateNameAux(festivalID: String, newName: String) async {
+        let data : [String: Any] = [
+            "name": newName
+        ]
+        APITools.updateOnAPI(endpoint: "festivals/name", id: festivalID, body: data)
         festivalVM.state = .idle
+    }
+    
+    func deleteZoneAux(id: String) async {
+        APITools.removeOnAPI(endpoint: "zones", id: id)
     }
 }

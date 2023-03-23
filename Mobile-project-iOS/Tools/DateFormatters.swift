@@ -28,4 +28,16 @@ struct DateFormatters {
         return formatter
     }
     
+    static func justDate() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE dd MMMM"
+        return formatter
+    }
+    
+    static func justTime() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }
+    
 }

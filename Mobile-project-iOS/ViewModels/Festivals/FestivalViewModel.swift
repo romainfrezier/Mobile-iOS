@@ -44,6 +44,11 @@ class FestivalViewModel: ObservableObject, Decodable, Hashable, Equatable {
         self.festival = FestivalDTO(id: id, name: name, zones: zones, days: days)
     }
     
+    init(festival: FestivalDTO){
+        self.id = festival.id
+        self.festival = festival
+    }
+    
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: FestivalDTO.CodingKeys.self)
         let name = try values.decode(String.self, forKey: .name)

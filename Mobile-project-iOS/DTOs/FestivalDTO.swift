@@ -36,7 +36,7 @@ class FestivalDTO : Codable {
     }
 }
 
-class FestivalDetailedDTO : Codable {
+class FestivalDetailedDTO : Codable, Hashable, Equatable {
     var id : String
     var name : String
     var zones : Array<ZoneDTO>
@@ -54,6 +54,14 @@ class FestivalDetailedDTO : Codable {
         self.name = ""
         self.zones = []
         self.days = []
+    }
+    
+    func hash(into hasher: inout Hasher){
+      hasher.combine(self.id)
+    }
+    
+    static func == (lhs: FestivalDetailedDTO, rhs: FestivalDetailedDTO) -> Bool {
+        return lhs.id == rhs.id
     }
     
     enum CodingKeys: String, CodingKey {

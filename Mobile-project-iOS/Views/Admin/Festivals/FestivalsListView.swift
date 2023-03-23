@@ -15,12 +15,14 @@ struct FestivalsListView: View {
     @State private var intent : FestivalsListIntent
     
     @State var isPresentedNew : Bool = false
+    @State var isPresentedUpdate : Bool = false
+    @State var selectedFestival : FestivalViewModel? = nil
     
     @State private var searchText = ""
     @State private var selectedSortOption: SortOptions = .nameAscending
     
     @State private var showConfirmationDialog = false
-    @State private var selectedIndexes : IndexSet = IndexSet()
+    @State private var selectedIndex : Int = -1
     
     @State private var errorMessage : String = ""
     @State private var showErrorToast : Bool = false
@@ -76,11 +78,25 @@ struct FestivalsListView: View {
                                         }
                                     }
                                 }
+                                .swipeActions(edge: .trailing) {
+                                    Button{
+                                        if let index = searchResults.firstIndex(where: { $0 == vm }) {
+                                            self.selectedIndex = index
+                                            self.showConfirmationDialog = true
+                                        }
+                                    } label: {
+                                    Label("Supprimer", systemImage: "trash")
+                                    }.tint(.red)
+                                    Button{
+                                        self.selectedFestival = vm
+                                        self.isPresentedUpdate.toggle()
+                                    } label: {
+                                        Label("Modifier", systemImage: "pencil")
+                                    }.tint(.blue)
+                                }
                             }
-                            .onDelete{ indexSet in
-                                self.selectedIndexes = indexSet
-                                self.showConfirmationDialog = true
-                            }
+                            
+                            
                         }
                         .refreshable {
                             intent.load()
@@ -104,8 +120,8 @@ struct FestivalsListView: View {
                         title: Text("Supprimer un festival"),
                         message: Text("Êtes vous sûr de vouloir supprimer le festival ? Vous ne pourrez plus revenir en arrière."),
                         primaryButton: .destructive(Text("Supprimer")) {
-                            if let indexToDelete = self.selectedIndexes.first {
-                                let festival = searchResults[indexToDelete]
+                            if self.selectedIndex != -1 {
+                                let festival = searchResults[self.selectedIndex]
                                 intent.delete(id: festival.festival.id)
                                 successMessage = "Le festival a bien été supprimé."
                                 showSuccessToast.toggle()
@@ -113,15 +129,26 @@ struct FestivalsListView: View {
                                     intent.load()
                                 }
                             }
-                            self.selectedIndexes.removeAll()
+                            self.selectedIndex = -1
                         },
                         secondaryButton: .cancel(Text("Annuler")) {
-                            self.selectedIndexes.removeAll()
+                            self.selectedIndex = -1
                         }
                     )
                 }
         }.sheet(isPresented: $isPresentedNew, content: {
-            FestivalAddView(vm: FestivalViewModel(), isPresented: $isPresentedNew, toastMessage: $errorMessage, showErrorToast: $showErrorToast, showSuccessToast: $showSuccessToast)
+//            FestivalAddView(vm: FestivalViewModel(), isPresented: $isPresentedNew, toastMessage: $errorMessage, showErrorToast: $showErrorToast, showSuccessToast: $showSuccessToast)
+            FestivalAddView()
+        }).sheet(isPresented: $isPresentedUpdate, content: {
+            if self.selectedFestival != nil {
+                FestivalUpdateNameView(festivalVM: self.selectedFestival!, intent: FestivalIntent(festivalVM: FestivalDetailedViewModel(festivalVM: self.selectedFestival!)), isPresentedUpate: $isPresentedUpdate)
+            } else {
+                HStack {
+                    Text("Veuillez rafraichir la liste des festivals")
+                    Image(systemName: "xmark").fontWeight(.bold).foregroundColor(.red)
+                }
+                
+            }
         })
         .toast(isPresenting: $showErrorToast){
             AlertToast(displayMode: .banner(.slide), type: .error(.red), title: errorMessage, subTitle: nil, style: nil)

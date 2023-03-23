@@ -43,7 +43,7 @@ struct DayDTO : Codable {
     }
 }
 
-struct DayDetailedDTO : Codable {
+struct DayDetailedDTO : Codable, Hashable, Equatable {
     var id : String
     var name : String
     var hours : HoursDTO
@@ -61,6 +61,14 @@ struct DayDetailedDTO : Codable {
         self.name = name
         self.hours = hours
         self.slots = slots
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(self.id)
+    }
+    
+    static func == (lhs: DayDetailedDTO, rhs: DayDetailedDTO) -> Bool {
+        return lhs.id == rhs.id
     }
     
     func getBody() -> [String : Any] {

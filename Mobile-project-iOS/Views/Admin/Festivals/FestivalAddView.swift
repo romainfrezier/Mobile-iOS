@@ -10,26 +10,26 @@ import AlertToast
 
 struct FestivalAddView: View {
     
-    @ObservedObject var vm : FestivalDetailedViewModel
-    @State var intent : FestivalIntent
-    
-    @Binding var isPresented : Bool
-    
-    @Binding var toastMessage : String
-    @Binding var showErrorToast : Bool
-    @State private var showLocalErrorToast : Bool = false
-    @Binding var showSuccessToast : Bool
-    
-    init(vm: FestivalViewModel, isPresented: Binding<Bool>, toastMessage: Binding<String>, showErrorToast: Binding<Bool>, showSuccessToast: Binding<Bool>) {
-        self.vm = FestivalDetailedViewModel(festivalVM: vm)
-        self._intent = State(initialValue: FestivalIntent(festivalVM: self._vm.wrappedValue))
-        
-        self._isPresented = isPresented
-        
-        self._toastMessage = toastMessage
-        self._showErrorToast = showErrorToast
-        self._showSuccessToast = showSuccessToast
-    }
+//    @ObservedObject var vm : FestivalDetailedViewModel
+//    @State var intent : FestivalIntent
+//
+//    @Binding var isPresented : Bool
+//
+//    @Binding var toastMessage : String
+//    @Binding var showErrorToast : Bool
+//    @State private var showLocalErrorToast : Bool = false
+//    @Binding var showSuccessToast : Bool
+//
+//    init(vm: FestivalViewModel, isPresented: Binding<Bool>, toastMessage: Binding<String>, showErrorToast: Binding<Bool>, showSuccessToast: Binding<Bool>) {
+//        self.vm = FestivalDetailedViewModel(festivalVM: vm)
+//        self._intent = State(initialValue: FestivalIntent(festivalVM: self._vm.wrappedValue))
+//
+//        self._isPresented = isPresented
+//
+//        self._toastMessage = toastMessage
+//        self._showErrorToast = showErrorToast
+//        self._showSuccessToast = showSuccessToast
+//    }
     
     var body: some View {
         NavigationStack {
@@ -52,17 +52,17 @@ struct FestivalAddView: View {
 //                    AlertToast(displayMode: .banner(.slide), type: .error(.red), title: errorMessage, subTitle: nil, style: nil)
 //                }
             }
-            .navigationBarTitle("Ajouter un festival")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button("Annuler") {
-                        toastMessage = "Le festival n'a pas été créé."
-                        showErrorToast.toggle()
-                        isPresented.toggle()
-                    }
-                }
-            }
+//            .navigationBarTitle("Ajouter un festival")
+//            .navigationBarTitleDisplayMode(.large)
+//            .toolbar {
+//                ToolbarItemGroup(placement: .navigationBarLeading) {
+//                    Button("Annuler") {
+//                        toastMessage = "Le festival n'a pas été créé."
+//                        showErrorToast.toggle()
+//                        isPresented.toggle()
+//                    }
+//                }
+//            }
         }
     }
     

@@ -148,6 +148,9 @@ struct APITools {
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body)
+                if let bodyString = String(data: request.httpBody ?? Data(), encoding: .utf8) {
+                    print("Request Body: ", bodyString)
+                }
             } catch {
                 print("Error encoding : \(error.localizedDescription)")
                 return
