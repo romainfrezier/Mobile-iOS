@@ -17,8 +17,9 @@ struct AddZoneView: View {
     
     @Binding var isPresentedNewZone : Bool
     
-    @State var toastMessage : String = ""
+    @Binding var toastMessage : String
     @State var showToast : Bool = false
+    @Binding var showSuccessToast : Bool
     
     var body: some View {
         VStack {
@@ -29,8 +30,9 @@ struct AddZoneView: View {
                 Spacer()
                 Button("Enregister") {
                     if (zoneName != ""){
-                        print(self.volunteerNumber)
                         intent.create(festivalID: self.festivalID, name: zoneName, volunteerNumber: self.volunteerNumber)
+                        self.showSuccessToast.toggle()
+                        self.toastMessage = "La zone a été ajoutée avec succès !"
                         self.isPresentedNewZone.toggle()
                     } else {
                         toastMessage = "Merci de donner un nom à la zone."

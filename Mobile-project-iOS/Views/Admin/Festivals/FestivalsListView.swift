@@ -63,11 +63,7 @@ struct FestivalsListView: View {
                     }.padding(.top)
                     switch listVM.state {
                     case .loading :
-                        VStack {
-                            Spacer()
-                            ProgressView()
-                            Spacer()
-                        }
+                        LoadingView()
                     case .idle :
                         List{
                             ForEach(searchResults, id: \.self) {

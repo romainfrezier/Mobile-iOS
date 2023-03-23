@@ -52,11 +52,7 @@ struct VolunteersListView: View {
                 }.padding(.top)
                 switch listVM.state {
                 case .loading :
-                    VStack {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    }
+                    LoadingView()
                 case .failed(_) :
                     VStack {
                         Spacer()

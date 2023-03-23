@@ -19,8 +19,15 @@ struct ZoneIntent {
     func create(festivalID: String, name: String, volunteerNumber: Int) {
         zoneVM.state = .creating
         Task {
-            print("Before Aux : ", volunteerNumber)
             await self.createAux(festivalID: festivalID, name: name, volunteerNumber: volunteerNumber)
+        }
+        zoneVM.state = .idle
+    }
+    
+    func update(id: String, name: String, volunteerNumber: Int) {
+        zoneVM.state = .updating
+        Task {
+            await self.updateAux(id: id, name: name, volunteerNumber: volunteerNumber)
         }
         zoneVM.state = .idle
     }
@@ -32,7 +39,14 @@ struct ZoneIntent {
             "name": name,
             "volunteersNumber": volunteerNumber
         ]
-        print("In Aux : ", data["volunteersNumber"]!)
         APITools.createOnAPI(endpoint: "zones/" + festivalID, body: data)
+    }
+    
+    func updateAux(id: String, name: String, volunteerNumber: Int) async {
+        let data : [String: Any] = [
+            "name": name,
+            "volunteersNumber": volunteerNumber
+        ]
+        APITools.updateOnAPI(endpoint: "zones/", id: id, body: data)
     }
 }

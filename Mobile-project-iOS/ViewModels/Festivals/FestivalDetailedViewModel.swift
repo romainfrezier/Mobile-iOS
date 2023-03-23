@@ -22,6 +22,7 @@ class FestivalDetailedViewModel: ObservableObject, Decodable, Hashable, Equatabl
             switch state {
             case .loadOne(let festival):
                 self.festival = festival
+                self.state = .idle
             case .failed(let error):
                 print("failed: \(error)")
             default:

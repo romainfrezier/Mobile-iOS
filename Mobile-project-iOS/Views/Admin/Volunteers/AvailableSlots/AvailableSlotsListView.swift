@@ -39,9 +39,7 @@ struct AvailableSlotsListView: View {
         VStack {
             switch availableSlotsVM.state {
             case .loading :
-                Spacer()
-                ProgressView()
-                Spacer()
+                LoadingView()
             case .idle :
                 if (availableSlotsVM.availableSlots == []) {
                     

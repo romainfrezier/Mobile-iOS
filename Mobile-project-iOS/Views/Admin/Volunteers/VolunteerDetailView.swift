@@ -34,11 +34,7 @@ struct VolunteerDetailView: View {
         VStack {
             switch vm.state {
             case .loading :
-                VStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
+                LoadingView()
             case .idle:
                 VStack {
                     HStack {
