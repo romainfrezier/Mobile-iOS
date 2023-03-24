@@ -23,10 +23,10 @@ struct VolunteerIntent {
         }
     }
 
-    func update(volunteer: VolunteerDTO) {
+    func update(id: String, firstName: String, lastName: String) {
         volunteerVM.state = .updating
         Task {
-            await self.updateAux(volunteer: volunteer)
+            await self.updateAux(id: id, firstName: firstName, lastName: lastName)
         }
     }
 
@@ -51,9 +51,9 @@ struct VolunteerIntent {
         APITools.loadFromAPI(endpoint: "volunteers/" + id, callback: self.loadedOneDataAux, apiReturn: returnType.object.rawValue)
     }
     
-    func updateAux(volunteer: VolunteerDTO) async {
-        let data : [String: Any] = volunteer.getBody()
-        APITools.updateOnAPI(endpoint: "volunteers", id: volunteer.id, body: data)
+    func updateAux(id: String, firstName: String, lastName: String) async {
+        let data : [String: Any] = ["firstName": firstName, "lastName": lastName]
+        APITools.updateOnAPI(endpoint: "volunteers", id: id, body: data)
         volunteerVM.state = .idle
     }
     

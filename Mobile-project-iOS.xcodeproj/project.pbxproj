@@ -80,6 +80,7 @@
 		A7F0E77729C7B4EE006BC332 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0E77629C7B4EE006BC332 /* APIResult.swift */; };
 		A7F0E77B29C7C622006BC332 /* AdminHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0E77A29C7C622006BC332 /* AdminHomeView.swift */; };
 		A7F0E77D29C7C630006BC332 /* VolunteerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0E77C29C7C630006BC332 /* VolunteerHomeView.swift */; };
+		B712A4ED29CDDBD9005D4D5E /* UpdateInformationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712A4EC29CDDBD9005D4D5E /* UpdateInformationsView.swift */; };
 		B7618B1829C996E600522551 /* FestivalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7618B1729C996E600522551 /* FestivalListView.swift */; };
 		B7618B1E29C9980700522551 /* FestivalsListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7618B1D29C9980700522551 /* FestivalsListIntent.swift */; };
 		B7618B2029C99AE700522551 /* FestivalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7618B1F29C99AE700522551 /* FestivalViewModel.swift */; };
@@ -161,6 +162,7 @@
 		A7F0E77629C7B4EE006BC332 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		A7F0E77A29C7C622006BC332 /* AdminHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeView.swift; sourceTree = "<group>"; };
 		A7F0E77C29C7C630006BC332 /* VolunteerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerHomeView.swift; sourceTree = "<group>"; };
+		B712A4EC29CDDBD9005D4D5E /* UpdateInformationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInformationsView.swift; sourceTree = "<group>"; };
 		B7618B1729C996E600522551 /* FestivalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalListView.swift; sourceTree = "<group>"; };
 		B7618B1D29C9980700522551 /* FestivalsListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalsListIntent.swift; sourceTree = "<group>"; };
 		B7618B1F29C99AE700522551 /* FestivalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				A762E98F29C7598100B23915 /* ProfileView.swift */,
+				B712A4EC29CDDBD9005D4D5E /* UpdateInformationsView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				B7618B2A29C9A18F00522551 /* SlotDTO.swift in Sources */,
 				A762E98929C758CD00B23915 /* env.swift in Sources */,
 				A7DF659729CC9B0E006237AD /* ZonesListView.swift in Sources */,
+				B712A4ED29CDDBD9005D4D5E /* UpdateInformationsView.swift in Sources */,
 				A762E96A29C7517D00B23915 /* APITools.swift in Sources */,
 				A723AFA329CBA3A000EEAD5D /* FestivalsListView.swift in Sources */,
 				A762E94F29C74E7000B23915 /* Mobile_project_iOSApp.swift in Sources */,
