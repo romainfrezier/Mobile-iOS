@@ -23,10 +23,10 @@ struct FestivalIntent {
         }
     }
     
-    func create(festival: FestivalDetailedDTO) {
+    func create(name: String) {
         festivalVM.state = .creating
         Task {
-            await self.createAux(festival: festival)
+            await self.createAux(name: name)
         }
     }
     
@@ -59,9 +59,8 @@ struct FestivalIntent {
         APITools.loadFromAPI(endpoint: "festivals/full/" + id, callback: loadOneData, apiReturn: returnType.object.rawValue)
     }
     
-    func createAux(festival: FestivalDetailedDTO) async {
-//        let data : [String: Any] = festival.getBody()
-        let data : [String: Any] = [:]
+    func createAux(name: String) async {
+        let data : [String: Any] = ["name": name]
         APITools.createOnAPI(endpoint: "festivals", body: data)
         festivalVM.state = .idle
     }

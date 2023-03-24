@@ -44,9 +44,10 @@ struct FestivalUpdateNameView: View {
                 }
             }
             
-            Spacer()
-            
-            Text(festivalName).font(.title).bold()
+            HStack {
+                Text("Modifier un festival").font(.title).bold()
+                Spacer()
+            }.padding()
             
             Spacer()
             

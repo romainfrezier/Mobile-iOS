@@ -42,16 +42,7 @@ struct AvailableSlotsListView: View {
                 LoadingView()
             case .idle :
                 if (availableSlotsVM.availableSlots == []) {
-                    
-                    HStack{
-                        Spacer()
-                        Text("Aucune disponibilité").padding()
-                        Spacer()
-                    }.background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray, lineWidth: 1)
-                    ).padding([.leading, .trailing, .bottom])
-                    
+                    EmptyArrayPlaceholder(text: "Aucune disponibilité.")
                 } else {
                     List{
                         ForEach(availableSlotsVM.availableSlots, id: \.self) {

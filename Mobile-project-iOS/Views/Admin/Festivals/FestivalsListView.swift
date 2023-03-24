@@ -65,44 +65,47 @@ struct FestivalsListView: View {
                     case .loading :
                         LoadingView()
                     case .idle :
-                        List{
-                            ForEach(searchResults, id: \.self) {
-                                vm in NavigationLink(value: vm) {
-                                    VStack(alignment: .leading){
-                                        HStack {
-                                            Text(vm.festival.name)
+                        if (listVM.festivals.count == 0){
+                            EmptyArrayPlaceholder(text: "Aucun festival.")
+                        } else {
+                            List{
+                                ForEach(searchResults, id: \.self) {
+                                    vm in NavigationLink(value: vm) {
+                                        VStack(alignment: .leading){
+                                            HStack {
+                                                Text(vm.festival.name)
+                                            }
                                         }
                                     }
+                                    .swipeActions(edge: .trailing) {
+                                        Button{
+                                            if let index = searchResults.firstIndex(where: { $0 == vm }) {
+                                                self.selectedIndex = index
+                                                self.showConfirmationDialog = true
+                                            }
+                                        } label: {
+                                            Label("Supprimer", systemImage: "trash")
+                                        }.tint(.red)
+                                        Button{
+                                            self.selectedFestival = vm
+                                            self.isPresentedUpdate.toggle()
+                                        } label: {
+                                            Label("Modifier", systemImage: "pencil")
+                                        }.tint(.blue)
+                                    }
                                 }
-                                .swipeActions(edge: .trailing) {
-                                    Button{
-                                        if let index = searchResults.firstIndex(where: { $0 == vm }) {
-                                            self.selectedIndex = index
-                                            self.showConfirmationDialog = true
-                                        }
-                                    } label: {
-                                    Label("Supprimer", systemImage: "trash")
-                                    }.tint(.red)
-                                    Button{
-                                        self.selectedFestival = vm
-                                        self.isPresentedUpdate.toggle()
-                                    } label: {
-                                        Label("Modifier", systemImage: "pencil")
-                                    }.tint(.blue)
-                                }
+                                
+                                
                             }
-                            
-                            
+                            .refreshable {
+                                intent.load()
+                            }
+                            .scrollContentBackground(.hidden)
+                            .navigationDestination(for: FestivalViewModel.self){
+                                vm in
+                                FestivalDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
+                            }
                         }
-                        .refreshable {
-                            intent.load()
-                        }
-                        .scrollContentBackground(.hidden)
-                        .navigationDestination(for: FestivalViewModel.self){
-                            vm in
-                            FestivalDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
-                        }
-                        
                     default:
                         CustomEmptyView()
                     }
@@ -133,8 +136,7 @@ struct FestivalsListView: View {
                     )
                 }
         }.sheet(isPresented: $isPresentedNew, content: {
-//            FestivalAddView(vm: FestivalViewModel(), isPresented: $isPresentedNew, toastMessage: $errorMessage, showErrorToast: $showErrorToast, showSuccessToast: $showSuccessToast)
-            FestivalAddView()
+            FestivalAddView(isPresentedNew: $isPresentedNew)
         }).sheet(isPresented: $isPresentedUpdate, content: {
             if self.selectedFestival != nil {
                 FestivalUpdateNameView(festivalVM: self.selectedFestival!, intent: FestivalIntent(festivalVM: FestivalDetailedViewModel(festivalVM: self.selectedFestival!)), isPresentedUpate: $isPresentedUpdate)

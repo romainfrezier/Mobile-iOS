@@ -41,3 +41,9 @@ struct DateFormatters {
     }
     
 }
+
+extension Date {
+    func toJSONString() -> String {
+        return DateFormatters.dbDate().string(from: self)
+    }
+}

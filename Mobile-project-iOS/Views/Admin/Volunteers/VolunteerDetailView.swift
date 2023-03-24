@@ -73,11 +73,14 @@ struct VolunteerDetailView: View {
                         Text("Disponibilités")
                         Spacer()
                     }.padding([.leading, .trailing])
-                    HStack {
-                        Spacer().frame(width: 30)
-                        Text("Swipez pour affecter ou libérer le bénévole").font(.caption).italic()
-                        Spacer()
-                    }.padding([.leading, .trailing])
+                    
+                    if (vm.volunteer.availableSlots.count > 0) {
+                        HStack {
+                            Spacer().frame(width: 30)
+                            Text("Swipez pour affecter ou libérer le bénévole").font(.caption).italic()
+                            Spacer()
+                        }.padding([.leading, .trailing])
+                    }
                     
                     AvailableSlotsListView(id: vm.volunteer.id, festival: festivalID)
                     
