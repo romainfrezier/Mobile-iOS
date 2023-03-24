@@ -23,6 +23,15 @@ struct FestivalsListIntent{
         }
     }
     
+    func loadOther(firebaseId: String) {
+        festivalsListVM.state = .loading
+        Task {
+            await self.loadOtherAux(firebaseId: firebaseId)
+        }
+    }
+    
+    
+    
     func delete(id: String) {
         festivalsListVM.state = .deleting
         Task {
@@ -42,6 +51,11 @@ struct FestivalsListIntent{
     
     func loadAux() async {
         APITools.loadFromAPI(endpoint: "festivals", callback: self.loadedData, apiReturn: returnType.array.rawValue)
+    }
+
+    
+    func loadOtherAux(firebaseId: String) async {
+        APITools.loadFromAPI(endpoint: "festivals/others/" + firebaseId, callback: self.loadedData, apiReturn: returnType.array.rawValue)
     }
     
     func deleteAux(id: String) async {
