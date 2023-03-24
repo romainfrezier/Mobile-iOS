@@ -24,6 +24,9 @@ struct ZonesListView: View {
     
     @State var successMessage : String = ""
     @State var showSuccessToast : Bool = false
+    private var listSize : Int {
+        self.zonesListVM.zones.count
+    }
     
     init(festivalID: String) {
         self.zonesListVM = ZonesListViewModel()
@@ -41,72 +44,76 @@ struct ZonesListView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
-            }.padding(.trailing)
+            }.padding([.bottom, .trailing])
             switch zonesListVM.state {
             case .loading :
                 LoadingView()
             case .idle :
-                if (zonesListVM.zones.count == 0){
-                    EmptyArrayPlaceholder(text: "Il n'y a pas encore de zone")
-                } else {
-                    List {
-                        ForEach(zonesListVM.zones, id: \.self){
-                            vm in
-                            VStack(alignment: .leading) {
-                                Text(vm.zone.name)
-                                HStack {
-                                    Text("Nombre de bénévole requis :")
-                                    Text("\(vm.zone.volunteersNumber)")
-                                }
-                            }
-                            .swipeActions(edge: .trailing) {
-                                Button{
-                                    self.selectedId = vm.zone.id
-                                    self.showConfirmationDialogZone = true
-                                } label: {
-                                    Label("Supprimer", systemImage: "trash")
-                                }.tint(.red)
-                                Button{
-                                    self.selectedZone = vm
-                                    self.isPresentedUpdate.toggle()
-                                } label: {
-                                    Label("Modifier", systemImage: "pencil")
-                                }.tint(.blue)
-                            }
-                        }
-                        .alert(isPresented: $showConfirmationDialogZone) {
-                            Alert(
-                                title: Text("Supprimer une zone"),
-                                message: Text("Êtes vous sûr de vouloir supprimer la zone ? Vous ne pourrez plus revenir en arrière."),
-                                primaryButton: .destructive(Text("Supprimer")) {
-                                    if self.selectedId != "" {
-                                        intent.deleteZone(id: selectedId)
-                                        successMessage = "La zone a bien été supprimé."
-                                        showSuccessToast.toggle()
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                            intent.loadByFestival(festival: self.festivalID)
-                                        }
+                VStack {
+                    switch listSize {
+                    case 0:
+                        EmptyArrayPlaceholder(text: "Il n'y a pas encore de zone")
+                    default:
+                        List {
+                            ForEach(zonesListVM.zones, id: \.self){
+                                vm in
+                                VStack(alignment: .leading) {
+                                    Text(vm.zone.name)
+                                    HStack {
+                                        Text("Nombre de bénévole requis :")
+                                        Text("\(vm.zone.volunteersNumber)")
                                     }
-                                    self.selectedId = ""
-                                },
-                                secondaryButton: .cancel(Text("Annuler")) {
-                                    self.selectedId = ""
                                 }
-                            )
-                        }
-                    }.sheet(isPresented: $isPresentedNewZone) {
-                        AddZoneView(festivalID: self.festivalID, isPresentedNewZone: $isPresentedNewZone, toastMessage: $successMessage, showSuccessToast: $showSuccessToast)
-                    }.sheet(isPresented: $isPresentedUpdate) {
-                        if self.selectedZone != nil {
-                            UpdateZoneView(vm: self.selectedZone!, isPresentedUpdateZone: $isPresentedUpdate, toastMessage: $successMessage, showSuccessToast: $showSuccessToast)
-                        } else {
-                            HStack {
-                                Text("Veuillez rafraichir la liste des zones")
-                                Image(systemName: "xmark").fontWeight(.bold).foregroundColor(.red)
+                                .swipeActions(edge: .trailing) {
+                                    Button{
+                                        self.selectedId = vm.zone.id
+                                        self.showConfirmationDialogZone = true
+                                    } label: {
+                                        Label("Supprimer", systemImage: "trash")
+                                    }.tint(.red)
+                                    Button{
+                                        self.selectedZone = vm
+                                        self.isPresentedUpdate.toggle()
+                                    } label: {
+                                        Label("Modifier", systemImage: "pencil")
+                                    }.tint(.blue)
+                                }
                             }
+                            .alert(isPresented: $showConfirmationDialogZone) {
+                                Alert(
+                                    title: Text("Supprimer une zone"),
+                                    message: Text("Êtes vous sûr de vouloir supprimer la zone ? Vous ne pourrez plus revenir en arrière."),
+                                    primaryButton: .destructive(Text("Supprimer")) {
+                                        if self.selectedId != "" {
+                                            intent.deleteZone(id: selectedId)
+                                            successMessage = "La zone a bien été supprimé."
+                                            showSuccessToast.toggle()
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                                intent.loadByFestival(festival: self.festivalID)
+                                            }
+                                        }
+                                        self.selectedId = ""
+                                    },
+                                    secondaryButton: .cancel(Text("Annuler")) {
+                                        self.selectedId = ""
+                                    }
+                                )
+                            }
+                        }.toast(isPresenting: $showSuccessToast) {
+                            AlertToast(displayMode: .banner(.slide), type: .complete(.green), title: successMessage, subTitle: nil, style: nil)
+                        }.scrollContentBackground(.hidden)
+                    }
+                }
+                .sheet(isPresented: $isPresentedNewZone) {
+                    AddZoneView(festivalID: self.festivalID, isPresentedNewZone: $isPresentedNewZone, toastMessage: $successMessage, showSuccessToast: $showSuccessToast)
+                }.sheet(isPresented: $isPresentedUpdate) {
+                    if self.selectedZone != nil {
+                        UpdateZoneView(vm: self.selectedZone!, isPresentedUpdateZone: $isPresentedUpdate, toastMessage: $successMessage, showSuccessToast: $showSuccessToast)
+                    } else {
+                        HStack {
+                            Text("Veuillez rafraichir la liste des zones")
+                            Image(systemName: "xmark").fontWeight(.bold).foregroundColor(.red)
                         }
-                    }.toast(isPresenting: $showSuccessToast) {
-                        AlertToast(displayMode: .banner(.slide), type: .complete(.green), title: successMessage, subTitle: nil, style: nil)
                     }
                 }
             default:
