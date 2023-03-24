@@ -10,76 +10,61 @@ import AlertToast
 
 struct FestivalAddView: View {
     
-//    @ObservedObject var vm : FestivalDetailedViewModel
-//    @State var intent : FestivalIntent
-//
-//    @Binding var isPresented : Bool
-//
-//    @Binding var toastMessage : String
-//    @Binding var showErrorToast : Bool
-//    @State private var showLocalErrorToast : Bool = false
-//    @Binding var showSuccessToast : Bool
-//
-//    init(vm: FestivalViewModel, isPresented: Binding<Bool>, toastMessage: Binding<String>, showErrorToast: Binding<Bool>, showSuccessToast: Binding<Bool>) {
-//        self.vm = FestivalDetailedViewModel(festivalVM: vm)
-//        self._intent = State(initialValue: FestivalIntent(festivalVM: self._vm.wrappedValue))
-//
-//        self._isPresented = isPresented
-//
-//        self._toastMessage = toastMessage
-//        self._showErrorToast = showErrorToast
-//        self._showSuccessToast = showSuccessToast
-//    }
+    @State var intent : FestivalIntent = FestivalIntent(festivalVM: FestivalDetailedViewModel())
+    @State var toastMessage : String = ""
+    @State var showToast : Bool = false
+    @Binding var isPresentedNew : Bool
+    @State var festivalName : String = ""
     
     var body: some View {
-        NavigationStack {
-            ZStack{
-//                Form {
-//                    Section(header: Text("NOM")){
-//                        TextField("Prénom", text: $firstName)
-//                        TextField("Nom", text: $lastName)
-//                    }
-//
-//                    Section(header: Text("Email")) {
-//                        TextField("Email", text: $emailAddress).keyboardType(.emailAddress)
-//                    }
-//
-//                    Section {
-//                        addButton
-//                    }
-//                }
-//                .toast(isPresenting: $showLocalErrorToast){
-//                    AlertToast(displayMode: .banner(.slide), type: .error(.red), title: errorMessage, subTitle: nil, style: nil)
-//                }
+        VStack {
+            HStack {
+                Button("Annuler"){
+                    self.isPresentedNew.toggle()
+                }
+                Spacer()
+                Button("Enregister") {
+                    if (festivalName != ""){
+                        intent.create(name: festivalName)
+                        self.isPresentedNew.toggle()
+                    } else {
+                        toastMessage = "Merci de donner un nom au festival."
+                        showToast.toggle()
+                    }
+                }
             }
-//            .navigationBarTitle("Ajouter un festival")
-//            .navigationBarTitleDisplayMode(.large)
-//            .toolbar {
-//                ToolbarItemGroup(placement: .navigationBarLeading) {
-//                    Button("Annuler") {
-//                        toastMessage = "Le festival n'a pas été créé."
-//                        showErrorToast.toggle()
-//                        isPresented.toggle()
-//                    }
-//                }
-//            }
-        }
+            
+            HStack {
+                Text("Ajouter un festival").font(.title).bold()
+                Spacer()
+            }.padding()
+            
+            
+            Spacer()
+            
+            ZStack(alignment: .bottom) {
+                HStack {
+                    TextField("Nom du festival", text: $festivalName)
+                        .background(Color.clear)
+                        .padding()
+                    Image(systemName: festivalName.count != 0 ? "checkmark" : "xmark")
+                        .fontWeight(.bold)
+                        .foregroundColor(festivalName.count != 0 ? .green : .red)
+                }
+
+                Rectangle()
+                    .fill(festivalName == "" ? Color.red : Color.blue)
+                    .frame(height: 1)
+            }.padding()
+            
+            
+            
+            Spacer()
+            
+            .toast(isPresenting: $showToast){
+                AlertToast(displayMode: .banner(.slide), type: .error(.red), title: toastMessage, subTitle: nil, style: nil)
+            }
+            
+        }.padding()
     }
-    
-//    var addButton : some View {
-//        VStack{
-//            Button("Enregister") {
-//                if (firstName != "" && lastName != "" && emailAddress != ""){
-//                    let createdVolunteer = VolunteerDTO(id: "", firstName: firstName, lastName: lastName, emailAddress: emailAddress)
-//                    intent.create(volunteer: createdVolunteer)
-//                    successMessage = "Le bénévole a bien été créé."
-//                    showSuccessToast.toggle()
-//                    isPresented.toggle()
-//                } else {
-//                    errorMessage = "Tous les champs doivent être remplis."
-//                    showLocalErrorToast.toggle()
-//                }
-//            }
-//        }
-//    }
 }

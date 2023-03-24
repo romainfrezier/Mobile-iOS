@@ -46,7 +46,7 @@ struct FestivalDetailView: View {
                 HStack {
                     Text(vm.festival.name).font(.title).bold()
                     Spacer()
-                }.padding()
+                }.padding([.leading, .bottom, .trailing])
                 
                 HStack {
                     Image(systemName: "info.circle.fill")
@@ -63,74 +63,32 @@ struct FestivalDetailView: View {
                         Text("Nombre de zones :").bold()
                         Text("\(vm.festival.zones.count)")
                         Spacer()
+                    }.padding([.leading, .top])
+                    HStack {
+                        Text("Nombre de jours :").bold()
+                        Text("\(vm.festival.days.count)")
+                        Spacer()
                     }.padding([.leading, .top, .bottom])
                 }.background(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 1)
                 ).padding([.leading, .trailing, .bottom])
                 
-                Divider()
+//                Divider()
                 
                 Picker(selection: $selectedDisplay, label: Text("Choisir un filtre")) {
                     ForEach(filters, id: \.self) {
                         Text($0)
                     }
                 }.pickerStyle(SegmentedPickerStyle()).padding(.all)
+                
+                Text("Swipez pour modifier ou supprimer").font(.caption).italic()
                     
                 switch selectedDisplay {
                 case filters[0]:
-                    ZonesListView(festivalID: vm.festival.id, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
+                    ZonesListView(festivalID: vm.festival.id)
                 case filters[1]:
-                    HStack {
-                        Spacer()
-                        Button{} label: {
-                            Image(systemName: "plus")
-                        }
-                    }.padding(.trailing)
-                    List {
-                        ForEach(vm.festival.days, id: \.self){
-                            day in NavigationLink(value: day) {
-                                VStack(alignment: .leading) {
-                                    
-                                    Text(DateFormatters.justDate().string(from: day.hours.opening).capitalized)
-                                    
-                                    HStack {
-                                        Text("Ouvre à :")
-                                        Text(DateFormatters.justTime().string(from: day.hours.opening))
-                                    }
-                                    
-                                    HStack {
-                                        Text("Ferme à :")
-                                        Text(DateFormatters.justTime().string(from: day.hours.closing))
-                                    }
-                                }
-                            }
-                        }
-                    }.navigationDestination(for: DayDetailedDTO.self){
-                        day in
-                        VStack(alignment: .leading) {
-                            Text("Liste des créneaux").font(.title).bold().padding(.leading)
-                            Text(DateFormatters.justDate().string(from: day.hours.opening).capitalized).font(.body).padding(.leading)
-                            
-                            List {
-                                ForEach(day.slots, id: \.self){ slot in
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Text("Début à :")
-                                            Spacer()
-                                            Text(DateFormatters.justTime().string(from: slot.start))
-                                        }
-                                        
-                                        HStack {
-                                            Text("Fin à :")
-                                            Spacer()
-                                            Text(DateFormatters.justTime().string(from: slot.end))
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    DaysListView(festivalID: vm.festival.id)
                 default:
                     CustomEmptyView()
                 }
@@ -142,8 +100,5 @@ struct FestivalDetailView: View {
         .onAppear{
             intent.loadOne(id: vm.festival.id)
         }
-//        .refreshable {
-//            intent.loadOne(id: vm.festival.id)
-//        }
     }
 }

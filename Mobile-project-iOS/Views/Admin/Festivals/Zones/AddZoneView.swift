@@ -40,7 +40,11 @@ struct AddZoneView: View {
                     }
                 }
             }.padding()
-            Spacer()
+            HStack {
+                Text("Ajouter une zone").font(.title).bold()
+                Spacer()
+            }.padding()
+            Spacer().frame(height: 100)
             ZStack(alignment: .bottom) {
                 HStack {
                     TextField("Nom de la zone", text: $zoneName)

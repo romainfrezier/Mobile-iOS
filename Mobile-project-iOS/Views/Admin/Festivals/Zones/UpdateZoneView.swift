@@ -46,7 +46,11 @@ struct UpdateZoneView: View {
                     }
                 }
             }.padding()
-            Spacer()
+            HStack {
+                Text("Modifier une zone").font(.title).bold()
+                Spacer()
+            }.padding()
+            Spacer().frame(height: 100)
             ZStack(alignment: .bottom) {
                 HStack {
                     TextField(vm.zone.name, text: $vm.zone.name)
