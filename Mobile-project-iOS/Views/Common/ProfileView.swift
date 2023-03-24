@@ -11,15 +11,21 @@ import Firebase
 struct ProfileView: View {
     
     @Binding var isLoggedIn : Bool
+    @State var successMessage : String = ""
+    @State var showSuccessToast : Bool = false
+    
+    @State private var isPresentedUpdate : Bool = false
     
     @State var userEmail : String = ""
     @State var displayName : String = ""
     
     @State private var showConfirmationDialog = false
+    @State private var defaultImagePresented = false
     
     @EnvironmentObject var currentUser : AuthViewModel
     
     @State var hour : Int = 0
+
     
     var body: some View {
         VStack {
@@ -29,11 +35,15 @@ struct ProfileView: View {
                 } else if let _ = phase.error {
                     Image(systemName: "person.crop.circle.fill")
                         .resizable(resizingMode: .stretch)
-                } else {
+                } else if (Auth.auth().currentUser!.photoURL == nil) {
+                    Image(systemName: "person.crop.circle.fill")
+                        .resizable(resizingMode: .stretch)
+                }else {
                     ProgressView()
                 }
                 
-            }.clipShape(Circle()).frame(width: 75, height: 75).overlay(Circle().stroke(.gray, lineWidth: 1).shadow(color: .gray, radius: 4, x: 0, y: 2)).padding()
+            }
+            .clipShape(Circle()).frame(width: 75, height: 75).overlay(Circle().stroke(.gray, lineWidth: 1).shadow(color: .gray, radius: 4, x: 0, y: 2)).padding()
             
             VStack {
                 
@@ -62,15 +72,20 @@ struct ProfileView: View {
             }
             
             Spacer()
-            CustomButton(text: "Modifier mes informations", action: toggleShowConfirmationDialog).padding() // TODO : Page modif nom + prenom
+            CustomButton(text: "Modifier mes informations", action: toggleUpdate).padding() // TODO : Page modif nom + prenom
             CustomButton(text: "Réinitialiser mon mot de passe", action: toggleShowConfirmationDialog).padding()
             CustomButton(text: "Se déconnecter", action: toggleIsLoggedIn).padding()
             Spacer()
+        }.sheet(isPresented: $isPresentedUpdate) {
+            UpdateInformationsView(vm: VolunteerViewModel(authVM: currentUser), isPresentedUpdate: $isPresentedUpdate, toastMessage: $successMessage, showSuccessToast: $showSuccessToast, displayName: $displayName).environmentObject(currentUser)
         }
         .onAppear{
             displayName = currentUser.volunteer.firstName + " " + currentUser.volunteer.lastName
             let date : Date = Date()
             self.hour = Calendar.current.component(.hour, from: date)
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                self.defaultImagePresented.toggle()
+            }
         }
         .alert(isPresented: $showConfirmationDialog) {
             Alert(
@@ -100,5 +115,8 @@ struct ProfileView: View {
     
     private func toggleShowConfirmationDialog() -> Void {
         self.showConfirmationDialog.toggle()
+    }
+    private func toggleUpdate() -> Void {
+        self.isPresentedUpdate.toggle()
     }
 }
