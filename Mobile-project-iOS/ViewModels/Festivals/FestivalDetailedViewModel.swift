@@ -41,6 +41,7 @@ class FestivalDetailedViewModel: ObservableObject, Decodable, Hashable, Equatabl
     }
     
     init(id: String, name: String, zones: Array<ZoneDTO>, days: Array<DayDetailedDTO>) {
+        print("J'ai été créée pleine !")
         self.id = id
         self.festival = FestivalDetailedDTO(id: id, name: name, zones: zones, days: days)
     }

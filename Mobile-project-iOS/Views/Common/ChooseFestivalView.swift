@@ -1,27 +1,26 @@
 //
-//  OtherFestivalsListView.swift
+//  ChooseFestivalView.swift
 //  Mobile-project-iOS
 //
-//  Created by etud on 21/03/2023.
+//  Created by Romain on 24/03/2023.
 //
 
 import SwiftUI
-import AlertToast
 
-struct OtherFestivalsListView: View {
+struct ChooseFestivalView: View {
     
-    @ObservedObject private var listVM : FestivalsListViewModel
+    @EnvironmentObject var currentUser : VolunteerViewModel
     
+    @ObservedObject private var listVM : FestivalsListViewModel = FestivalsListViewModel()
     @State private var intent : FestivalsListIntent
+    @State private var volunteerIntent : VolunteerIntent
     
     @State private var searchText = ""
     @State private var selectedSortOption: SortOptions = .nameAscending
-
-    @EnvironmentObject var currentUser: VolunteerViewModel
     
     init() {
-        self.listVM = FestivalsListViewModel()
         self._intent = State(initialValue: FestivalsListIntent(festivalsListVM: self._listVM.wrappedValue))
+        self._volunteerIntent = State(initialValue: VolunteerIntent(volunteerVM: VolunteerViewModel()))
     }
     
     var body: some View {
@@ -43,39 +42,42 @@ struct OtherFestivalsListView: View {
                         }
                         Spacer().frame(width: 30)
                     }.padding(.top)
+                    
+                    Text("Veuillez commencer par choisir un festival").padding()
+                    
                     switch listVM.state {
                     case .loading :
                         LoadingView()
                     case .idle :
-                        List{
-                            ForEach(searchResults, id: \.self) {
-                                vm in NavigationLink(value: vm) {
+                        if (listVM.festivals.count == 0){
+                            EmptyArrayPlaceholder(text: "Aucun festival.")
+                            Spacer()
+                        } else {
+                            List{
+                                ForEach(searchResults, id: \.self) {
+                                    vm in
                                     VStack(alignment: .leading){
                                         HStack {
                                             Text(vm.festival.name)
                                         }
+                                    }.onTapGesture{
+                                        self.volunteerIntent = VolunteerIntent(volunteerVM: self.currentUser)
+                                        self.volunteerIntent.setFestival(id: self.currentUser.volunteer.id, festivalID: vm.festival.id)
+                                        self.currentUser.volunteer.festivalId = vm.festival.id
                                     }
                                 }
+                            }.refreshable {
+                                intent.load()
                             }
-                            
-                            
+                            .scrollContentBackground(.hidden)
                         }
-                        .refreshable {
-                            intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
-                        }
-                        .scrollContentBackground(.hidden)
-                        //.navigationDestination(for: FestivalViewModel.self){
-                          //  vm in
-                            //FestivalDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
-                        //}
-                        
                     default:
                         CustomEmptyView()
                     }
                 }
                 .searchable(text: $searchText)
                 .onAppear{
-                    self.intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
+                    self.intent.load()
                 }
         }
     }
@@ -103,6 +105,3 @@ struct OtherFestivalsListView: View {
         }
     }
 }
-
-
-

@@ -12,8 +12,8 @@ struct LoggedInView: View {
     
     @Binding var isLoggedIn : Bool
     
-    @State var intent : AuthIntent
-    @EnvironmentObject var currentUser : AuthViewModel
+    @State var intent : VolunteerIntent
+    @EnvironmentObject var currentUser : VolunteerViewModel
     
     var body: some View {
         ZStack {

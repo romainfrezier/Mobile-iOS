@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A70612D429CD9E9500DAC658 /* AddDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70612D329CD9E9500DAC658 /* AddDayView.swift */; };
 		A70612D629CDE34300DAC658 /* EmptyArrayPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70612D529CDE34300DAC658 /* EmptyArrayPlaceholder.swift */; };
+		A70612D929CE0B3C00DAC658 /* MyFestivalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70612D829CE0B3C00DAC658 /* MyFestivalView.swift */; };
+		A70612DB29CE0C7F00DAC658 /* ChooseFestivalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70612DA29CE0C7F00DAC658 /* ChooseFestivalView.swift */; };
 		A708337D29C99E11002C4CFE /* VolunteersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708337C29C99E11002C4CFE /* VolunteersListView.swift */; };
 		A708337F29C99E2E002C4CFE /* VolunteerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */; };
 		A708338229C99E7A002C4CFE /* VolunteerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */; };
@@ -28,12 +30,12 @@
 		A723AFA229CBA3A000EEAD5D /* FestivalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AF9F29CBA3A000EEAD5D /* FestivalDetailView.swift */; };
 		A723AFA329CBA3A000EEAD5D /* FestivalsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AFA029CBA3A000EEAD5D /* FestivalsListView.swift */; };
 		A723AFA829CBB0AB00EEAD5D /* FestivalDetailedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723AFA729CBB0AB00EEAD5D /* FestivalDetailedViewModel.swift */; };
+		A73ACFDC29CF5A070010B1E4 /* MyFestivalDaysListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73ACFDB29CF5A070010B1E4 /* MyFestivalDaysListView.swift */; };
+		A73ACFE029CF5A2B0010B1E4 /* MyFestivalZonesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73ACFDF29CF5A2B0010B1E4 /* MyFestivalZonesListView.swift */; };
 		A752AB6B29C77D3C00CF4E38 /* VolunteerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */; };
-		A752AB6E29C787CE00CF4E38 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */; };
 		A752AB7229C7893300CF4E38 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB6F29C7893200CF4E38 /* APIErrors.swift */; };
 		A752AB7329C7893300CF4E38 /* SortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB7029C7893200CF4E38 /* SortOptions.swift */; };
 		A752AB7429C7893300CF4E38 /* APIStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB7129C7893300CF4E38 /* APIStates.swift */; };
-		A752AB7729C78A7A00CF4E38 /* AuthIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752AB7629C78A7A00CF4E38 /* AuthIntent.swift */; };
 		A762E94F29C74E7000B23915 /* Mobile_project_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762E94E29C74E7000B23915 /* Mobile_project_iOSApp.swift */; };
 		A762E95129C74E7000B23915 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762E95029C74E7000B23915 /* MainView.swift */; };
 		A762E95329C74E7300B23915 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A762E95229C74E7300B23915 /* Assets.xcassets */; };
@@ -94,6 +96,8 @@
 /* Begin PBXFileReference section */
 		A70612D329CD9E9500DAC658 /* AddDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDayView.swift; sourceTree = "<group>"; };
 		A70612D529CDE34300DAC658 /* EmptyArrayPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyArrayPlaceholder.swift; sourceTree = "<group>"; };
+		A70612D829CE0B3C00DAC658 /* MyFestivalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFestivalView.swift; sourceTree = "<group>"; };
+		A70612DA29CE0C7F00DAC658 /* ChooseFestivalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFestivalView.swift; sourceTree = "<group>"; };
 		A708337C29C99E11002C4CFE /* VolunteersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteersListView.swift; sourceTree = "<group>"; };
 		A708337E29C99E2E002C4CFE /* VolunteerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerDetailView.swift; sourceTree = "<group>"; };
 		A708338129C99E7A002C4CFE /* VolunteerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListViewModel.swift; sourceTree = "<group>"; };
@@ -113,13 +117,13 @@
 		A723AF9F29CBA3A000EEAD5D /* FestivalDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FestivalDetailView.swift; sourceTree = "<group>"; };
 		A723AFA029CBA3A000EEAD5D /* FestivalsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FestivalsListView.swift; sourceTree = "<group>"; };
 		A723AFA729CBB0AB00EEAD5D /* FestivalDetailedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalDetailedViewModel.swift; sourceTree = "<group>"; };
+		A73ACFDB29CF5A070010B1E4 /* MyFestivalDaysListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFestivalDaysListView.swift; sourceTree = "<group>"; };
+		A73ACFDF29CF5A2B0010B1E4 /* MyFestivalZonesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFestivalZonesListView.swift; sourceTree = "<group>"; };
 		A752AB6929C776B200CF4E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A752AB6A29C77D3C00CF4E38 /* VolunteerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteerDTO.swift; sourceTree = "<group>"; };
-		A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		A752AB6F29C7893200CF4E38 /* APIErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
 		A752AB7029C7893200CF4E38 /* SortOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortOptions.swift; sourceTree = "<group>"; };
 		A752AB7129C7893300CF4E38 /* APIStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIStates.swift; sourceTree = "<group>"; };
-		A752AB7629C78A7A00CF4E38 /* AuthIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthIntent.swift; sourceTree = "<group>"; };
 		A762E94B29C74E7000B23915 /* Mobile-project-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile-project-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A762E94E29C74E7000B23915 /* Mobile_project_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mobile_project_iOSApp.swift; sourceTree = "<group>"; };
 		A762E95029C74E7000B23915 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -189,11 +193,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A70612D729CE0B1500DAC658 /* MyFestival */ = {
+			isa = PBXGroup;
+			children = (
+				A70612D829CE0B3C00DAC658 /* MyFestivalView.swift */,
+				A73ACFDB29CF5A070010B1E4 /* MyFestivalDaysListView.swift */,
+				A73ACFDF29CF5A2B0010B1E4 /* MyFestivalZonesListView.swift */,
+			);
+			path = MyFestival;
+			sourceTree = "<group>";
+		};
 		A708337A29C99654002C4CFE /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				A762E98F29C7598100B23915 /* ProfileView.swift */,
 				B712A4EC29CDDBD9005D4D5E /* UpdateInformationsView.swift */,
+				A70612DA29CE0C7F00DAC658 /* ChooseFestivalView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -293,22 +308,6 @@
 			path = Festivals;
 			sourceTree = "<group>";
 		};
-		A752AB6C29C7877700CF4E38 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				A752AB6D29C787CE00CF4E38 /* AuthViewModel.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
-		A752AB7529C78A5400CF4E38 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				A752AB7629C78A7A00CF4E38 /* AuthIntent.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
 		A762E94229C74E7000B23915 = {
 			isa = PBXGroup;
 			children = (
@@ -361,10 +360,10 @@
 		A762E95C29C750DE00B23915 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A708337A29C99654002C4CFE /* Common */,
-				A7F0E77929C7C5FC006BC332 /* Volunteer */,
 				A7F0E77829C7C5F6006BC332 /* Admin */,
 				A762E98C29C7595600B23915 /* Auth */,
+				A708337A29C99654002C4CFE /* Common */,
+				A7F0E77929C7C5FC006BC332 /* Volunteer */,
 				A762E95029C74E7000B23915 /* MainView.swift */,
 				A762E9A029C75A2400B23915 /* CustomEmptyView.swift */,
 				A762E99F29C75A2400B23915 /* LoggedInView.swift */,
@@ -379,7 +378,6 @@
 				A723AF9529CB7CFD00EEAD5D /* Zones */,
 				A708338029C99E66002C4CFE /* Volunteer */,
 				B7618B1A29C9976500522551 /* Festivals */,
-				A752AB6C29C7877700CF4E38 /* Auth */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -391,7 +389,6 @@
 				A723AFA429CBA45E00EEAD5D /* Festivals */,
 				A723AF9A29CB7EEC00EEAD5D /* Zones */,
 				A708338529C9A0FE002C4CFE /* Volunteer */,
-				A752AB7529C78A5400CF4E38 /* Auth */,
 			);
 			path = Intents;
 			sourceTree = "<group>";
@@ -506,8 +503,9 @@
 		A7F0E77929C7C5FC006BC332 /* Volunteer */ = {
 			isa = PBXGroup;
 			children = (
-				A7F0E77C29C7C630006BC332 /* VolunteerHomeView.swift */,
+				A70612D729CE0B1500DAC658 /* MyFestival */,
 				B7618B1629C996B300522551 /* OthersFestivals */,
+				A7F0E77C29C7C630006BC332 /* VolunteerHomeView.swift */,
 			);
 			path = Volunteer;
 			sourceTree = "<group>";
@@ -649,21 +647,22 @@
 				A708337D29C99E11002C4CFE /* VolunteersListView.swift in Sources */,
 				A762E99D29C759E300B23915 /* CustomButton.swift in Sources */,
 				A723AFA229CBA3A000EEAD5D /* FestivalDetailView.swift in Sources */,
-				A752AB6E29C787CE00CF4E38 /* AuthViewModel.swift in Sources */,
+				A70612D929CE0B3C00DAC658 /* MyFestivalView.swift in Sources */,
 				A762E99E29C759E300B23915 /* PasswordToggle.swift in Sources */,
 				A7F0E77B29C7C622006BC332 /* AdminHomeView.swift in Sources */,
 				A762E99C29C759E300B23915 /* GoogleButton.swift in Sources */,
 				A762E9A229C75A2500B23915 /* CustomEmptyView.swift in Sources */,
+				A73ACFDC29CF5A070010B1E4 /* MyFestivalDaysListView.swift in Sources */,
 				A752AB7329C7893300CF4E38 /* SortOptions.swift in Sources */,
 				B7618B2229C99BA200522551 /* FestivalsListViewModel.swift in Sources */,
 				B7618B2629C99EC500522551 /* ZoneDTO.swift in Sources */,
+				A73ACFE029CF5A2B0010B1E4 /* MyFestivalZonesListView.swift in Sources */,
 				B7618B1829C996E600522551 /* OtherFestivalsListView.swift in Sources */,
 				A7F0E77D29C7C630006BC332 /* VolunteerHomeView.swift in Sources */,
 				A762E9A129C75A2500B23915 /* LoggedInView.swift in Sources */,
 				A71608EC29CCCAAB0045B122 /* UpdateDayView.swift in Sources */,
 				A7DF659E29CCBC6B006237AD /* DaysListView.swift in Sources */,
 				A723AF8B29CB598500EEAD5D /* AvailableSlotsListViewModel.swift in Sources */,
-				A752AB7729C78A7A00CF4E38 /* AuthIntent.swift in Sources */,
 				A723AF9129CB663C00EEAD5D /* AvailableSlotsListView.swift in Sources */,
 				A762E96929C7517D00B23915 /* ViewExtensions.swift in Sources */,
 				A762E97929C7541B00B23915 /* AppDelegate.swift in Sources */,
@@ -677,6 +676,7 @@
 				A762E96A29C7517D00B23915 /* APITools.swift in Sources */,
 				A723AFA329CBA3A000EEAD5D /* FestivalsListView.swift in Sources */,
 				A762E94F29C74E7000B23915 /* Mobile_project_iOSApp.swift in Sources */,
+				A70612DB29CE0C7F00DAC658 /* ChooseFestivalView.swift in Sources */,
 				A723AF9C29CB7F0100EEAD5D /* ZonesListIntent.swift in Sources */,
 				A762E99429C7598200B23915 /* LoginView.swift in Sources */,
 				A762E99529C7598200B23915 /* ProfileView.swift in Sources */,

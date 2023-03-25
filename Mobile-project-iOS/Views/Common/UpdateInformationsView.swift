@@ -13,7 +13,7 @@ struct UpdateInformationsView: View {
     @State var intent : VolunteerIntent
     @ObservedObject var vm : VolunteerViewModel
     
-    @EnvironmentObject var currentUser : AuthViewModel
+    @EnvironmentObject var currentUser : VolunteerViewModel
     
     @Binding var isPresentedUpdate : Bool
     @Binding var displayName : String

@@ -10,7 +10,7 @@ import AlertToast
 
 struct VolunteersListView: View {
     @ObservedObject private var listVM : VolunteerListViewModel
-    @EnvironmentObject var currentUser : AuthViewModel
+    @EnvironmentObject var currentUser : VolunteerViewModel
     @State private var intent : VolunteerListIntent
     
     @State private var searchText = ""

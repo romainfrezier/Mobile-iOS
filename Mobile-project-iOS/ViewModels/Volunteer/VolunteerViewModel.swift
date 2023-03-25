@@ -40,9 +40,9 @@ class VolunteerViewModel: ObservableObject, Decodable, Hashable, Equatable {
         self.volunteer = VolunteerDTO()
     }
     
-    init(authVM: AuthViewModel){
-        self.volunteer = VolunteerDTO(id: authVM.volunteer.id, firstName: authVM.volunteer.firstName, lastName: authVM.volunteer.lastName, emailAddress: authVM.volunteer.emailAddress, firebaseId: authVM.volunteer.firebaseId, festivalId: authVM.volunteer.festivalId, isAdmin: authVM.volunteer.isAdmin, availableSlots: authVM.volunteer.availableSlots)
-        self.id = authVM.volunteer.id
+    init(volunteerVM: VolunteerViewModel){
+        self.volunteer = VolunteerDTO(id: volunteerVM.volunteer.id, firstName: volunteerVM.volunteer.firstName, lastName: volunteerVM.volunteer.lastName, emailAddress: volunteerVM.volunteer.emailAddress, firebaseId: volunteerVM.volunteer.firebaseId, festivalId: volunteerVM.volunteer.festivalId, isAdmin: volunteerVM.volunteer.isAdmin, availableSlots: volunteerVM.volunteer.availableSlots)
+        self.id = volunteerVM.volunteer.id
     }
     
     init(id: String, firstName: String, lastName: String, emailAddress: String, firebaseId: String, festivalId: String?, isAdmin: Bool, availableSlots: Array<AvailableSlotsDTO>) {

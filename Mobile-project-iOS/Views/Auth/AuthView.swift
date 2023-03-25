@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthView: View {
     
-    @State var intent : AuthIntent
+    @State var intent : VolunteerIntent
     
     @State private var currentViewShowing: String = "login"
     @State var userEmail : String = ""

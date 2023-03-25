@@ -16,6 +16,10 @@ struct FestivalIntent {
         self.festivalVM = festivalVM
     }
     
+    init(){
+        self.festivalVM = FestivalDetailedViewModel()
+    }
+    
     func loadOne(id: String) {
         festivalVM.state = .loading
         Task {

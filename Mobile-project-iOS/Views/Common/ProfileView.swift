@@ -22,10 +22,9 @@ struct ProfileView: View {
     @State private var showConfirmationDialog = false
     @State private var defaultImagePresented = false
     
-    @EnvironmentObject var currentUser : AuthViewModel
+    @EnvironmentObject var currentUser : VolunteerViewModel
     
     @State var hour : Int = 0
-
     
     var body: some View {
         VStack {
@@ -77,7 +76,7 @@ struct ProfileView: View {
             CustomButton(text: "Se déconnecter", action: toggleIsLoggedIn).padding()
             Spacer()
         }.sheet(isPresented: $isPresentedUpdate) {
-            UpdateInformationsView(vm: VolunteerViewModel(authVM: currentUser), isPresentedUpdate: $isPresentedUpdate, toastMessage: $successMessage, showSuccessToast: $showSuccessToast, displayName: $displayName).environmentObject(currentUser)
+            UpdateInformationsView(vm: VolunteerViewModel(volunteerVM: currentUser), isPresentedUpdate: $isPresentedUpdate, toastMessage: $successMessage, showSuccessToast: $showSuccessToast, displayName: $displayName).environmentObject(currentUser)
         }
         .onAppear{
             displayName = currentUser.volunteer.firstName + " " + currentUser.volunteer.lastName

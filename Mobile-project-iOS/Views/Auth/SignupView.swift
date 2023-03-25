@@ -15,7 +15,7 @@ struct SignupView: View {
     @Binding var emailToCheck : String
     @Binding var currentShowingView: String
     
-    @State var intent : AuthIntent
+    @State var intent : VolunteerIntent
     
     @AppStorage("loggedIn") var loggedIn: Bool = false
     

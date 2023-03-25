@@ -10,12 +10,12 @@ import SwiftUI
 struct MainView: View {
     @AppStorage("loggedIn") var loggedIn: Bool = false
     
-    @State private var intent : AuthIntent
-    @ObservedObject private var currentUser : AuthViewModel
+    @State private var intent : VolunteerIntent
+    @ObservedObject var currentUser : VolunteerViewModel
     
     init(){
-        self.currentUser = AuthViewModel()
-        self.intent = AuthIntent(authVM: _currentUser.wrappedValue)
+        self.currentUser = VolunteerViewModel()
+        self.intent = VolunteerIntent(volunteerVM: self._currentUser.wrappedValue)
     }
     
     var body: some View {

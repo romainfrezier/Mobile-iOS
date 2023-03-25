@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AdminHomeView: View {
-    @EnvironmentObject var currentUser : AuthViewModel
+    @EnvironmentObject var currentUser : VolunteerViewModel
     @Binding var isLoggedIn : Bool
     var body: some View {
         TabView {

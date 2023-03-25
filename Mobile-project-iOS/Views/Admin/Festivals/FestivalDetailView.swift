@@ -74,8 +74,6 @@ struct FestivalDetailView: View {
                         .stroke(Color.gray, lineWidth: 1)
                 ).padding([.leading, .trailing, .bottom])
                 
-//                Divider()
-                
                 Picker(selection: $selectedDisplay, label: Text("Choisir un filtre")) {
                     ForEach(filters, id: \.self) {
                         Text($0)
