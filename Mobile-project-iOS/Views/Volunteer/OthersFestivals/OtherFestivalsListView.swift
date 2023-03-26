@@ -26,57 +26,57 @@ struct OtherFestivalsListView: View {
     
     var body: some View {
         NavigationStack {
-                VStack {
-                    HStack {
-                        Spacer().frame(width: 30)
-                        Text("Festivals").font(.title).fontWeight(.bold)
-                        Spacer()
-                        
-                        Menu {
-                            Button("Nom A-Z\(self.selectedSortOption == .nameAscending ? " ✓" : "")"){self.selectedSortOption = .nameAscending}.buttonStyle(PlainButtonStyle())
-                            Button("Nom Z-A\(self.selectedSortOption == .nameDescending ? " ✓" : "")"){self.selectedSortOption = .nameDescending}.buttonStyle(PlainButtonStyle())
-                        } label: {
-                            HStack {
-                                Text("Trier")
-                                Image(systemName: "arrow.up.arrow.down")
-                            }
+            VStack {
+                HStack {
+                    Spacer().frame(width: 30)
+                    Text("Festivals").font(.title).fontWeight(.bold)
+                    Spacer()
+                    
+                    Menu {
+                        Button("Nom A-Z\(self.selectedSortOption == .nameAscending ? " ✓" : "")"){self.selectedSortOption = .nameAscending}.buttonStyle(PlainButtonStyle())
+                        Button("Nom Z-A\(self.selectedSortOption == .nameDescending ? " ✓" : "")"){self.selectedSortOption = .nameDescending}.buttonStyle(PlainButtonStyle())
+                    } label: {
+                        HStack {
+                            Text("Trier")
+                            Image(systemName: "arrow.up.arrow.down")
                         }
-                        Spacer().frame(width: 30)
-                    }.padding(.top)
-                    switch listVM.state {
-                    case .loading :
-                        LoadingView()
-                    case .idle :
-                        List{
-                            ForEach(searchResults, id: \.self) {
-                                vm in NavigationLink(value: vm) {
-                                    VStack(alignment: .leading){
-                                        HStack {
-                                            Text(vm.festival.name)
-                                        }
+                    }
+                    Spacer().frame(width: 30)
+                }.padding(.top)
+                switch listVM.state {
+                case .loading :
+                    LoadingView()
+                case .idle :
+                    List{
+                        ForEach(searchResults, id: \.self) {
+                            vm in NavigationLink(value: vm) {
+                                VStack(alignment: .leading){
+                                    HStack {
+                                        Text(vm.festival.name)
                                     }
                                 }
                             }
-                            
-                            
                         }
-                        .refreshable {
-                            intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
-                        }
-                        .scrollContentBackground(.hidden)
-                        //.navigationDestination(for: FestivalViewModel.self){
-                          //  vm in
-                            //FestivalDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
-                        //}
                         
-                    default:
-                        CustomEmptyView()
+                        
                     }
+                    .refreshable {
+                        intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
+                    }
+                    .scrollContentBackground(.hidden)
+                    //.navigationDestination(for: FestivalViewModel.self){
+                      //  vm in
+                        //FestivalDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
+                    //}
+                    
+                default:
+                    CustomEmptyView()
                 }
-                .searchable(text: $searchText)
-                .onAppear{
-                    self.intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
-                }
+            }
+            .searchable(text: $searchText)
+            .onAppear{
+                self.intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
+            }
         }
     }
     

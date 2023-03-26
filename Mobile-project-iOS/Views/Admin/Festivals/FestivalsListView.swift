@@ -139,7 +139,7 @@ struct FestivalsListView: View {
             FestivalAddView(isPresentedNew: $isPresentedNew)
         }).sheet(isPresented: $isPresentedUpdate, content: {
             if self.selectedFestival != nil {
-                FestivalUpdateNameView(festivalVM: self.selectedFestival!, intent: FestivalIntent(festivalVM: FestivalDetailedViewModel(festivalVM: self.selectedFestival!)), isPresentedUpate: $isPresentedUpdate)
+                FestivalUpdateNameView(festivalVM: self.selectedFestival!, intent: FestivalIntent(festivalVM: self.selectedFestival!), isPresentedUpate: $isPresentedUpdate)
             } else {
                 HStack {
                     Text("Veuillez rafraichir la liste des festivals")

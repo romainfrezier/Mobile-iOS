@@ -10,7 +10,7 @@ import AlertToast
 
 struct FestivalAddView: View {
     
-    @State var intent : FestivalIntent = FestivalIntent(festivalVM: FestivalDetailedViewModel())
+    @State var intent : FestivalIntent = FestivalIntent(festivalVM: FestivalViewModel())
     @State var toastMessage : String = ""
     @State var showToast : Bool = false
     @Binding var isPresentedNew : Bool

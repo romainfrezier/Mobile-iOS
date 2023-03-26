@@ -42,3 +42,43 @@ struct SlotDTO : Codable, Hashable {
         String(describing: self)
     }
 }
+
+struct SlotDetailedDTO : Codable, Hashable, Equatable {
+    var id : String
+    var start : Date
+    var end : Date
+    var volunteers: Array<VolunteerDTO>
+    
+    init(){
+        self.id = ""
+        self.start = Date()
+        self.end = Date()
+        self.volunteers = []
+    }
+    
+    init(id: String, start: Date, end: Date, volunteers: Array<VolunteerDTO>){
+        self.id = id
+        self.start = start
+        self.end = end
+        self.volunteers = volunteers
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(self.id)
+    }
+    
+    static func == (lhs: SlotDetailedDTO, rhs: SlotDetailedDTO) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case start
+        case end
+        case volunteers
+    }
+    
+    func toString() -> String {
+        String(describing: self)
+    }
+}

@@ -10,12 +10,10 @@ import AlertToast
 
 struct MyFestivalView: View {
     
-    @ObservedObject var myFestivalVM : FestivalDetailedViewModel
+    @ObservedObject var myFestivalVM : FestivalViewModel
     @State var intent : FestivalIntent
     
     @EnvironmentObject var currentUser : VolunteerViewModel
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var isShowingChooseFestivalView : Bool = false
     @State var selectedFestival : String = ""
@@ -24,7 +22,7 @@ struct MyFestivalView: View {
     @State private var selectedDisplay : String = "Zones"
     
     init(){
-        self.myFestivalVM = FestivalDetailedViewModel()
+        self.myFestivalVM = FestivalViewModel()
         self._intent = State(initialValue: FestivalIntent(festivalVM: self._myFestivalVM.wrappedValue))
     }
     
@@ -39,7 +37,7 @@ struct MyFestivalView: View {
                         HStack {
                             Text(myFestivalVM.festival.name).font(.title).bold()
                             Spacer()
-                        }.padding([.leading, .bottom, .trailing])
+                        }.padding()
                         HStack {
                             Image(systemName: "info.circle.fill")
                             Text("Informations")

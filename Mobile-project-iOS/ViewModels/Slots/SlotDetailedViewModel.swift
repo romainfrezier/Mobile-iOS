@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-class AvailableSlotViewModel : ObservableObject, Decodable, Hashable, Equatable {
+class SlotDetailedViewModel: ObservableObject, Decodable, Hashable, Equatable {
     
-    static func == (lhs: AvailableSlotViewModel, rhs: AvailableSlotViewModel) -> Bool {
+    static func == (lhs: SlotDetailedViewModel, rhs: SlotDetailedViewModel) -> Bool {
         return lhs.id == rhs.id
     }
     

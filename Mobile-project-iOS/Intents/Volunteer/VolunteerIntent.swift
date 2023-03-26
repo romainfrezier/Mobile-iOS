@@ -44,6 +44,18 @@ struct VolunteerIntent {
         }
     }
     
+    func addSlot(id: String, slotID: String) {
+        Task {
+            await addSlotAux(id: id, slotID: slotID)
+        }
+    }
+    
+    func removeSlot(id: String, slotID: String) {
+        Task {
+            await removeSlotAux(id: id, slotID: slotID)
+        }
+    }
+    
     func setFestival(id: String, festivalID: String){
         volunteerVM.state = .updating
         Task {
@@ -58,6 +70,8 @@ struct VolunteerIntent {
         }
     }
 
+    // MARK: - Aux async function to call API
+    
     func loadedOneData(result : APIResult<VolunteerDTO>){
         switch result {
         case .success(let volunteer):
@@ -65,7 +79,6 @@ struct VolunteerIntent {
         default:
             volunteerVM.state = .failed(.apiError)
         }
-        
     }
     
     func loadOneAux(id : String) async {
@@ -80,6 +93,20 @@ struct VolunteerIntent {
         let data : [String: Any] = ["firstName": firstName, "lastName": lastName]
         APITools.updateOnAPI(endpoint: "volunteers", id: id, body: data)
         volunteerVM.state = .idle
+    }
+    
+    func addSlotAux(id: String, slotID: String) async {
+        let data : [String: Any] = [
+            "newSlot": slotID
+        ]
+        APITools.updateOnAPI(endpoint: "volunteers/addSlot", id: id, body: data)
+    }
+    
+    func removeSlotAux(id: String, slotID: String) async {
+        let data : [String: Any] = [
+            "removedSlot": slotID
+        ]
+        APITools.updateOnAPI(endpoint: "volunteers/removeSlot", id: id, body: data)
     }
     
     func setFestivalAux(id: String, festivalID: String) async {

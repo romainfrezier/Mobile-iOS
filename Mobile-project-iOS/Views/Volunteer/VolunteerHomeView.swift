@@ -19,7 +19,7 @@ struct VolunteerHomeView: View {
                     Label("Mon festival", systemImage: "party.popper.fill")
                 }.environmentObject(currentUser)
                 
-                CustomEmptyView().tabItem{
+                MyActivityView().tabItem{
                     Label("Mon activité", systemImage: "trophy.fill")
                 }.environmentObject(currentUser)
                 

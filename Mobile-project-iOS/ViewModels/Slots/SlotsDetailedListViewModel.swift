@@ -1,5 +1,5 @@
 //
-//  AvailableSlotsListViewModel.swift
+//  SlotsListViewModel.swift
 //  Mobile-project-iOS
 //
 //  Created by Romain on 22/03/2023.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-class AvailableSlotsListViewModel: ObservableObject {
+class SlotsDetailedListViewModel: ObservableObject {
     
-    @Published var state: APIStates<AvailableSlotViewModel> = .idle {
+    @Published var state: APIStates<SlotDetailedViewModel> = .idle {
         didSet {
             switch state {
             case .load(let slots):
-                self.availableSlots = slots
+                self.slots = slots
                 self.state = .idle
             case .failed(let error):
                 print("failed: \(error)")
@@ -24,13 +24,13 @@ class AvailableSlotsListViewModel: ObservableObject {
         }
     }
 
-    @Published var availableSlots : [AvailableSlotViewModel];
+    @Published var slots : [SlotDetailedViewModel];
     
-    init(availableSlots: [AvailableSlotViewModel]) {
-        self.availableSlots = availableSlots
+    init(slots: [SlotDetailedViewModel]) {
+        self.slots = slots
     }
     
     init() {
-        self.availableSlots = []
+        self.slots = []
     }
 }

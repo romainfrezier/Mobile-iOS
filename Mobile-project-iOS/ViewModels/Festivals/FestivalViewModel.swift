@@ -22,6 +22,7 @@ class FestivalViewModel: ObservableObject, Decodable, Hashable, Equatable {
             switch state {
             case .loadOne(let festival):
                 self.festival = festival
+                self.state = .idle
             case .failed(let error):
                 print("failed: \(error)")
             default:
@@ -56,19 +57,5 @@ class FestivalViewModel: ObservableObject, Decodable, Hashable, Equatable {
         let days = try values.decode(Array<String>.self, forKey: .days)
         id = try values.decode(String.self, forKey: .id)
         festival = FestivalDTO(id: id, name: name, zones: zones, days: days)
-    }
-
-    func toEmptyDetailed() -> FestivalDetailedViewModel {
-        let zones = self.festival.zones.map { zone in
-            ZoneDTO(id: zone, name: "", volunteersNumber: 0)
-        }
-        let days = self.festival.days.map{ day in
-            DayDetailedDTO(id: day, name: "", hours: HoursDTO(), slots: [])
-        }
-        return FestivalDetailedViewModel(id: self.id, name: self.festival.name, zones: zones, days: days)
-    }
-    
-    func update(value: FestivalDTO) {
-        self.festival = value
     }
 }

@@ -10,8 +10,8 @@ import AlertToast
 
 struct AvailableSlotsListView: View {
     
-    @ObservedObject private var availableSlotsVM : AvailableSlotsListViewModel
-    @State private var availableSlotsIntent : AvailableSlotsListIntent
+    @ObservedObject private var availableSlotsVM : SlotsDetailedListViewModel
+    @State private var availableSlotsIntent : SlotsDetailedListIntent
     
     @ObservedObject private var zonesVM : ZonesListViewModel
     @State private var zonesIntent : ZonesListIntent
@@ -20,14 +20,14 @@ struct AvailableSlotsListView: View {
     @State var userFestival : String
     
     @State private var isListDisplayed: Bool = false
-    @State private var selectedSlot: AvailableSlotViewModel? = nil
+    @State private var selectedSlot: SlotDetailedViewModel? = nil
     
     @State private var toastMessage : String = ""
     @State private var isToastDisplayed : Bool = false
     
     init(id: String, festival: String?) {
-        self.availableSlotsVM = AvailableSlotsListViewModel()
-        self._availableSlotsIntent = State(initialValue: AvailableSlotsListIntent(availableSlotsVM: self._availableSlotsVM.wrappedValue))
+        self.availableSlotsVM = SlotsDetailedListViewModel()
+        self._availableSlotsIntent = State(initialValue: SlotsDetailedListIntent(slotsVM: self._availableSlotsVM.wrappedValue))
         
         self.zonesVM = ZonesListViewModel()
         self._zonesIntent = State(initialValue: ZonesListIntent(zoneListVM: self._zonesVM.wrappedValue))
@@ -41,11 +41,11 @@ struct AvailableSlotsListView: View {
             case .loading :
                 LoadingView()
             case .idle :
-                if (availableSlotsVM.availableSlots == []) {
+                if (availableSlotsVM.slots == []) {
                     EmptyArrayPlaceholder(text: "Aucune disponibilité.")
                 } else {
                     List{
-                        ForEach(availableSlotsVM.availableSlots, id: \.self) {
+                        ForEach(availableSlotsVM.slots, id: \.self) {
                             vm in VStack(alignment: .leading) {
                                 HStack {
                                     Text("Du :")
@@ -67,7 +67,7 @@ struct AvailableSlotsListView: View {
                                     Button{
                                         availableSlotsIntent.free(volunteer: self.currentUserID, slot: vm.availableSlot.slot.id)
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                            availableSlotsIntent.load(id: self.currentUserID)
+                                            availableSlotsIntent.loadAvailable(id: self.currentUserID)
                                         }
                                         self.toastMessage = "Bénévole libérer avec succès !"
                                         self.isToastDisplayed = true
@@ -117,7 +117,7 @@ struct AvailableSlotsListView: View {
                                 isListDisplayed = false
                                 availableSlotsIntent.assign(volunteer: self.currentUserID, slot: self.selectedSlot!.availableSlot.slot.id, zone: zone.zone.id)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                    availableSlotsIntent.load(id: self.currentUserID)
+                                    availableSlotsIntent.loadAvailable(id: self.currentUserID)
                                 }
                                 self.toastMessage = "Bénévole affecté avec succès !"
                                 self.isToastDisplayed = true
@@ -132,7 +132,7 @@ struct AvailableSlotsListView: View {
             
         })
         .onAppear{
-            availableSlotsIntent.load(id: self.currentUserID)
+            availableSlotsIntent.loadAvailable(id: self.currentUserID)
             if (self.userFestival != "") {
                 zonesIntent.loadByFestival(festival: self.userFestival)
             }

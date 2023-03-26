@@ -62,4 +62,8 @@ class VolunteerViewModel: ObservableObject, Decodable, Hashable, Equatable {
         let availableSlots = try values.decode(Array<AvailableSlotsDTO>.self, forKey: .availableSlots)
         self.volunteer = VolunteerDTO(id: id, firstName: firstname, lastName: lastname, emailAddress: email, firebaseId: firebaseId, festivalId: festivalId, isAdmin: isAdmin, availableSlots: availableSlots)
     }
+    
+    func updateSlots(slots: [AvailableSlotsDTO]){
+        self.volunteer.availableSlots = slots
+    }
 }

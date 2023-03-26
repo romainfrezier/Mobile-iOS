@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VolunteerDTO : Codable {
+struct VolunteerDTO : Codable, Hashable, Equatable {
     var id : String
     var firstName : String
     var lastName : String
@@ -37,6 +37,14 @@ struct VolunteerDTO : Codable {
         self.festivalId = nil
         self.isAdmin = false
         self.availableSlots = []
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(self.id)
+    }
+    
+    static func == (lhs: VolunteerDTO, rhs: VolunteerDTO) -> Bool {
+        return lhs.id == rhs.id
     }
     
     enum CodingKeys: String, CodingKey {

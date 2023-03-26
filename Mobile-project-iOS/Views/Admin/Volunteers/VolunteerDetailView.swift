@@ -12,8 +12,6 @@ struct VolunteerDetailView: View {
     @ObservedObject var vm : VolunteerViewModel;
     @State var intent : VolunteerIntent;
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State private var errorMessage : String = ""
     @State private var showErrorToast : Bool = false
     
@@ -49,20 +47,24 @@ struct VolunteerDetailView: View {
                         Spacer()
                     }.padding([.leading, .trailing, .top])
                     VStack {
-                        HStack {
-                            Text("Email :").bold()
-                            Text(vm.volunteer.emailAddress)
-                            Spacer()
-                        }.padding([.leading, .top])
-                        HStack {
-                            Text("Festival :").bold()
-                            Text(vm.volunteer.festivalId ?? "Pas de festival")
-                            Spacer()
-                        }.padding([.leading, .top])
-                        HStack {
-                            Text(vm.volunteer.isAdmin ? "Ce bénévole est un admin." : "")
-                            Spacer()
-                        }.padding([.leading, .top, .bottom])
+                        VStack{
+                            HStack {
+                                Text("Email :").bold()
+                                Text(vm.volunteer.emailAddress)
+                                Spacer()
+                            }.padding(.top)
+                            HStack {
+                                Text("Festival :").bold()
+                                Text(vm.volunteer.festivalId ?? "Pas de festival")
+                                Spacer()
+                            }.padding(.top)
+                            if (vm.volunteer.isAdmin) {
+                                HStack {
+                                    Text("Ce bénévole est un admin.")
+                                    Spacer()
+                                }.padding(.top)
+                            }
+                        }.padding([.bottom, .leading, .trailing])
                     }.background(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.gray, lineWidth: 1)

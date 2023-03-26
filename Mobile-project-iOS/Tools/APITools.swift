@@ -97,7 +97,7 @@ struct APITools {
                             print("No data")
                         }
                     } catch let JsonError {
-                        print("fetch json error:", JsonError)
+                        print("fetch json error (\(url)):", JsonError)
                     }
                 case returnType.object.rawValue :
                     do {
@@ -116,7 +116,7 @@ struct APITools {
                             print("No data")
                         }
                     } catch let JsonError {
-                        print("fetch json error:", JsonError)
+                        print("fetch json error (\(url)):", JsonError)
                     }
                 default:
                     print("Bad returnType")
@@ -191,6 +191,8 @@ struct APITools {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue(token, forHTTPHeaderField: "authtoken")
             request.addValue(uid, forHTTPHeaderField: "requester")
+            
+            print("URL :", url)
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body)

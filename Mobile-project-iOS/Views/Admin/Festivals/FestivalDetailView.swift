@@ -10,10 +10,8 @@ import AlertToast
 
 struct FestivalDetailView: View {
     
-    @ObservedObject var vm : FestivalDetailedViewModel;
+    @ObservedObject var vm : FestivalViewModel;
     @State var intent : FestivalIntent
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var errorMessage : String = ""
     @State private var showErrorToast : Bool = false
@@ -30,7 +28,7 @@ struct FestivalDetailView: View {
     @State private var selectedDisplay : String = "Zones"
     
     init(vm: FestivalViewModel, successMessage : Binding<String>, showSuccessToast: Binding<Bool>){
-        self.vm = FestivalDetailedViewModel(festivalVM: vm)
+        self.vm = vm
         self._intent = State(initialValue: FestivalIntent(festivalVM: self._vm.wrappedValue))
         self._successMessage = successMessage
         self._showSuccessToast = showSuccessToast

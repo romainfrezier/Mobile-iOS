@@ -10,14 +10,14 @@ import SwiftUI
 
 struct FestivalIntent {
     
-    @ObservedObject private var festivalVM : FestivalDetailedViewModel
+    @ObservedObject private var festivalVM : FestivalViewModel
     
-    init(festivalVM: FestivalDetailedViewModel) {
+    init(festivalVM: FestivalViewModel) {
         self.festivalVM = festivalVM
     }
     
     init(){
-        self.festivalVM = FestivalDetailedViewModel()
+        self.festivalVM = FestivalViewModel()
     }
     
     func loadOne(id: String) {
@@ -50,7 +50,7 @@ struct FestivalIntent {
     
     // MARK: - Aux async function to call API
     
-    func loadOneData(result: APIResult<FestivalDetailedViewModel>) -> Void {
+    func loadOneData(result: APIResult<FestivalViewModel>) -> Void {
         switch result {
         case .success(let festival):
             self.festivalVM.state = .loadOne(festival.festival)
@@ -60,7 +60,7 @@ struct FestivalIntent {
     }
     
     func loadOneAux(id: String) async {
-        APITools.loadFromAPI(endpoint: "festivals/full/" + id, callback: loadOneData, apiReturn: returnType.object.rawValue)
+        APITools.loadFromAPI(endpoint: "festivals/" + id, callback: loadOneData, apiReturn: returnType.object.rawValue)
     }
     
     func createAux(name: String) async {
