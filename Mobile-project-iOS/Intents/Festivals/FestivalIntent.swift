@@ -73,8 +73,15 @@ struct FestivalIntent {
         let data : [String: Any] = [
             "name": newName
         ]
-        APITools.updateOnAPI(endpoint: "festivals/name", id: festivalID, body: data)
-        festivalVM.state = .idle
+        APITools.updateOnAPI(endpoint: "festivals/name", id: festivalID, body: data){
+            result in
+            switch result {
+            case .success(_):
+                festivalVM.state = .idle
+            case .failure(_):
+                festivalVM.state = .failed(.apiError)
+            }
+        }
     }
     
     func deleteZoneAux(id: String) async {

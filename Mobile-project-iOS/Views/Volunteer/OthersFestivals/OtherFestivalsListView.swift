@@ -11,6 +11,7 @@ import AlertToast
 struct OtherFestivalsListView: View {
     
     @ObservedObject private var listVM : FestivalsListViewModel
+    @ObservedObject private var volunteerVM : VolunteerViewModel
     
     @State private var intent : FestivalsListIntent
     
@@ -23,11 +24,10 @@ struct OtherFestivalsListView: View {
     @State var showSuccessToast : Bool = false
     @State var showErrorToast : Bool = false
     
-    @EnvironmentObject var currentUser: VolunteerViewModel
-    
-    init() {
+    init(volunteerVM: VolunteerViewModel) {
+        self.volunteerVM = volunteerVM
         self.listVM = FestivalsListViewModel()
-        self._intent = State(initialValue: FestivalsListIntent(festivalsListVM: self._listVM.wrappedValue))
+        self._intent = State(initialValue: FestivalsListIntent(festivalsListVM: self._listVM.wrappedValue, volunteerVM: volunteerVM))
     }
     
     var body: some View {
@@ -79,8 +79,7 @@ struct OtherFestivalsListView: View {
                             message: Text("Êtes vous sûr de vouloir changer de festival? Vous ne pourrez plus revenir en arrière, vous perdrez toutes vos affectations et disponibilités."),
                             primaryButton: .destructive(Text("Changer")) {
                                 if self.selectedID != "" {
-                                    self.currentUser.volunteer.festivalId = self.selectedID
-                                    intent.changeFestival(volunteer: self.currentUser.volunteer.id, festival: selectedID)
+                                    intent.changeFestival(volunteer: self.volunteerVM.volunteer.id, festival: selectedID)
                                     self.toastMessage = "Changement de festival effectué !"
                                     self.showSuccessToast.toggle()
                                     self.selectedID = ""
@@ -95,7 +94,7 @@ struct OtherFestivalsListView: View {
                         )
                     }
                     .refreshable {
-                        intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
+                        intent.loadOther(volunteerId: volunteerVM.volunteer.id)
                     }
                     .navigationDestination(for: FestivalViewModel.self){
                         vm in
@@ -115,7 +114,7 @@ struct OtherFestivalsListView: View {
             }
             .searchable(text: $searchText)
             .onAppear{
-                self.intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
+                self.intent.loadOther(volunteerId: volunteerVM.volunteer.id)
             }
         }
     }

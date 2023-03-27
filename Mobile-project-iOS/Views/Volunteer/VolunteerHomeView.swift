@@ -15,17 +15,18 @@ struct VolunteerHomeView: View {
             ChooseFestivalView().environmentObject(currentUser)
         } else {
             TabView {
-                MyFestivalView().tabItem{
-                    Label("Mon festival", systemImage: "party.popper.fill")
-                }.environmentObject(currentUser)
                 
                 MyActivityView().tabItem{
                     Label("Mon activité", systemImage: "trophy.fill")
                 }.environmentObject(currentUser)
                 
-                OtherFestivalsListView().tabItem{
-                    Label("Autres festivals", systemImage: "balloon.2.fill")
+                MyFestivalView().tabItem{
+                    Label("Mon festival", systemImage: "party.popper.fill")
                 }.environmentObject(currentUser)
+                
+                OtherFestivalsListView(volunteerVM: currentUser).tabItem{
+                    Label("Autres festivals", systemImage: "balloon.2.fill")
+                }
                 
                 ProfileView(isLoggedIn: $isLoggedIn).tabItem{
                     Label("Profil", systemImage: "person.fill")

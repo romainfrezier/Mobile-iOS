@@ -49,6 +49,14 @@ struct DayIntent {
         let data : [String: Any] = [
             "name": name
         ]
-        APITools.updateOnAPI(endpoint: "days/", id: id, body: data)
+        APITools.updateOnAPI(endpoint: "days/", id: id, body: data){
+            result in
+            switch result {
+            case .success(_):
+                dayVM.state = .idle
+            case .failure(_):
+                dayVM.state = .failed(.apiError)
+            }
+        }
     }
 }

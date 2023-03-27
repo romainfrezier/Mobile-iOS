@@ -11,9 +11,16 @@ import SwiftUI
 struct FestivalsListIntent{
     
     @ObservedObject private var festivalsListVM : FestivalsListViewModel
+    @ObservedObject private var volunteerVM : VolunteerViewModel
+    
+    init(festivalsListVM: FestivalsListViewModel, volunteerVM: VolunteerViewModel){
+        self.festivalsListVM = festivalsListVM
+        self.volunteerVM = volunteerVM
+    }
     
     init(festivalsListVM: FestivalsListViewModel){
         self.festivalsListVM = festivalsListVM
+        self.volunteerVM = VolunteerViewModel()
     }
     
     func load() {
@@ -23,10 +30,10 @@ struct FestivalsListIntent{
         }
     }
     
-    func loadOther(firebaseId: String) {
+    func loadOther(volunteerId: String) {
         festivalsListVM.state = .loading
         Task {
-            await self.loadOtherAux(firebaseId: firebaseId)
+            await self.loadOtherAux(volunteerId: volunteerId)
         }
     }
     
@@ -61,14 +68,22 @@ struct FestivalsListIntent{
     }
 
     
-    func loadOtherAux(firebaseId: String) async {
-        APITools.loadFromAPI(endpoint: "festivals/others/" + firebaseId, callback: self.loadedData, apiReturn: returnType.array.rawValue)
+    func loadOtherAux(volunteerId: String) async {
+        APITools.loadFromAPI(endpoint: "festivals/others/" + volunteerId, callback: self.loadedData, apiReturn: returnType.array.rawValue)
     }
     
     func changeFestivalAux(volunteer: String, festival: String) async {
         let body: [String: Any] = ["festival":festival]
-        await APITools.updateOnAPI(endpoint: "volunteers/changeFestival", id: volunteer, body: body)
-        festivalsListVM.state = .idle
+        APITools.updateOnAPI(endpoint: "volunteers/changeFestival", id: volunteer, body: body) {
+            result in
+            switch result {
+            case .success(_):
+                self.volunteerVM.state = .updateFestival(festival)
+            case .failure(_):
+                festivalsListVM.state = .failed(.apiError)
+            }
+        }
+        
     }
 
     

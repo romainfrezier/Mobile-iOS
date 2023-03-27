@@ -45,12 +45,14 @@ struct VolunteerIntent {
     }
     
     func addSlot(id: String, slotID: String) {
+        volunteerVM.state = .updating
         Task {
             await addSlotAux(id: id, slotID: slotID)
         }
     }
     
     func removeSlot(id: String, slotID: String) {
+        volunteerVM.state = .updating
         Task {
             await removeSlotAux(id: id, slotID: slotID)
         }
@@ -91,28 +93,58 @@ struct VolunteerIntent {
     
     func updateAux(id: String, firstName: String, lastName: String) async {
         let data : [String: Any] = ["firstName": firstName, "lastName": lastName]
-        APITools.updateOnAPI(endpoint: "volunteers", id: id, body: data)
-        volunteerVM.state = .idle
+        APITools.updateOnAPI(endpoint: "volunteers", id: id, body: data){
+            result in
+            switch result {
+            case .success(_):
+                volunteerVM.state = .idle
+            case .failure(_):
+                volunteerVM.state = .failed(.apiError)
+            }
+        }
     }
     
     func addSlotAux(id: String, slotID: String) async {
         let data : [String: Any] = [
             "newSlot": slotID
         ]
-        APITools.updateOnAPI(endpoint: "volunteers/addSlot", id: id, body: data)
+        APITools.updateOnAPI(endpoint: "volunteers/addSlot", id: id, body: data){
+            result in
+            switch result {
+            case .success(_):
+                self.volunteerVM.state = .idle
+            case .failure(_):
+                volunteerVM.state = .failed(.apiError)
+            }
+        }
     }
     
     func removeSlotAux(id: String, slotID: String) async {
         let data : [String: Any] = [
             "removedSlot": slotID
         ]
-        APITools.updateOnAPI(endpoint: "volunteers/removeSlot", id: id, body: data)
+        APITools.updateOnAPI(endpoint: "volunteers/removeSlot", id: id, body: data){
+            result in
+            switch result {
+            case .success(_):
+                self.volunteerVM.state = .idle
+            case .failure(_):
+                volunteerVM.state = .failed(.apiError)
+            }
+        }
     }
     
     func setFestivalAux(id: String, festivalID: String) async {
         let data : [String:Any] = ["festival": festivalID]
-        APITools.updateOnAPI(endpoint: "volunteers", id: id, body: data)
-        volunteerVM.state = .idle
+        APITools.updateOnAPI(endpoint: "volunteers", id: id, body: data){
+            result in
+            switch result {
+            case .success(_):
+                self.volunteerVM.state = .idle
+            case .failure(_):
+                volunteerVM.state = .failed(.apiError)
+            }
+        }
     }
     
     func deleteAux(id: String) async {
@@ -125,11 +157,18 @@ struct VolunteerIntent {
         Task {
             await self.makeAdminAux(id: id)
         }
-        volunteerVM.state = .idle
     }
     
     func makeAdminAux(id: String) async {
-        APITools.updateOnAPI(endpoint: "volunteers/admin", id: id, body: [:])
+        APITools.updateOnAPI(endpoint: "volunteers/admin", id: id, body: [:]){
+            result in
+            switch result {
+            case .success(_):
+                self.volunteerVM.state = .idle
+            case .failure(_):
+                volunteerVM.state = .failed(.apiError)
+            }
+        }
     }
 
     func createAux(firebaseId : String, firstName : String, lastName : String, email : String) async {

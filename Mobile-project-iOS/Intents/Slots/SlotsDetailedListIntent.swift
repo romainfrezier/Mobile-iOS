@@ -75,7 +75,15 @@ struct SlotsDetailedListIntent {
         let body : [String: Any] = [
             "slot": slot
         ]
-        APITools.updateOnAPI(endpoint: "volunteers/free", id: volunteer, body: body)
+        APITools.updateOnAPI(endpoint: "volunteers/free", id: volunteer, body: body){
+            result in
+            switch result {
+            case .success(_):
+                slotsVM.state = .idle
+            case .failure(_):
+                slotsVM.state = .failed(.apiError)
+            }
+        }
     }
     
     func assignAux(volunteer: String, slot: String, zone: String) async {
@@ -83,7 +91,15 @@ struct SlotsDetailedListIntent {
             "slot": slot,
             "zone": zone
         ]
-        APITools.updateOnAPI(endpoint: "volunteers/assign", id: volunteer, body: body)
+        APITools.updateOnAPI(endpoint: "volunteers/assign", id: volunteer, body: body){
+            result in
+            switch result {
+            case .success(_):
+                slotsVM.state = .idle
+            case .failure(_):
+                slotsVM.state = .failed(.apiError)
+            }
+        }
     }
     
     func loadNotAvailableAux(volunteer: String) async {

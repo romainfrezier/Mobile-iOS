@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MyActivityView: View {
     
-    var filters : [String] = ["Mes affectations", "Mes disponibilités"]
-    @State private var selectedDisplay : String = "Mes affectations"
+    var filters : [String] = ["Mes disponibilités", "Mes affectations"]
+    @State private var selectedDisplay : String = "Mes disponibilités"
     
     @EnvironmentObject var currentUser : VolunteerViewModel
     
@@ -33,9 +33,9 @@ struct MyActivityView: View {
                 
                 switch selectedDisplay {
                 case filters[0]:
-                    MyAssignmentsListView(volunteerID: self.currentUser.volunteer.id)
-                case filters[1]:
                     MyAvailabilitiesListView(vIntent: VolunteerIntent(volunteerVM: currentUser)).environmentObject(currentUser)
+                case filters[1]:
+                    MyAssignmentsListView(volunteerID: self.currentUser.volunteer.id)
                 default:
                     CustomEmptyView()
                 }

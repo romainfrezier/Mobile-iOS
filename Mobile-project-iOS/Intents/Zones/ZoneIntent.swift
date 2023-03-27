@@ -29,7 +29,6 @@ struct ZoneIntent {
         Task {
             await self.updateAux(id: id, name: name, volunteerNumber: volunteerNumber)
         }
-        zoneVM.state = .idle
     }
     
     // MARK: - Aux async function to call API
@@ -47,6 +46,14 @@ struct ZoneIntent {
             "name": name,
             "volunteersNumber": volunteerNumber
         ]
-        APITools.updateOnAPI(endpoint: "zones/", id: id, body: data)
+        APITools.updateOnAPI(endpoint: "zones/", id: id, body: data){
+            result in
+            switch result {
+            case .success(_):
+                zoneVM.state = .idle
+            case .failure(_):
+                zoneVM.state = .failed(.apiError)
+            }
+        }
     }
 }
