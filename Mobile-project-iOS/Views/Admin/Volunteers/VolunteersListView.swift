@@ -79,7 +79,7 @@ struct VolunteersListView: View {
                         }
                     }.refreshable {
                         intent.load()
-                    }.scrollContentBackground(.hidden)
+                    }
                         .navigationDestination(for: VolunteerViewModel.self){
                             vm in
                             VolunteerDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast, festivalID: vm.volunteer.festivalId)

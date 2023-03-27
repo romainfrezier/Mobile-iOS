@@ -14,9 +14,15 @@ struct OtherFestivalsListView: View {
     
     @State private var intent : FestivalsListIntent
     
-    @State private var searchText = ""
+    @State private var searchText: String = ""
     @State private var selectedSortOption: SortOptions = .nameAscending
+    @State private var alertPresented: Bool = false
+    @State private var selectedID : String = ""
 
+    @State var toastMessage : String = ""
+    @State var showSuccessToast : Bool = false
+    @State var showErrorToast : Bool = false
+    
     @EnvironmentObject var currentUser: VolunteerViewModel
     
     init() {
@@ -46,6 +52,8 @@ struct OtherFestivalsListView: View {
                 switch listVM.state {
                 case .loading :
                     LoadingView()
+                case .updating :
+                    LoadingView()
                 case .idle :
                     List{
                         ForEach(searchResults, id: \.self) {
@@ -56,18 +64,50 @@ struct OtherFestivalsListView: View {
                                     }
                                 }
                             }
+                            .swipeActions(edge: .trailing) {
+                                Button{
+                                    self.selectedID = vm.festival.id
+                                    self.alertPresented.toggle()
+                                } label: {
+                                    Label("Changer", systemImage: "bookmark.slash")
+                                }.tint(.blue)
+                            }
                         }
-                        
-                        
+                    }.alert(isPresented: $alertPresented) {
+                        Alert(
+                            title: Text("Changer de festival"),
+                            message: Text("Êtes vous sûr de vouloir changer de festival? Vous ne pourrez plus revenir en arrière, vous perdrez toutes vos affectations et disponibilités."),
+                            primaryButton: .destructive(Text("Changer")) {
+                                if self.selectedID != "" {
+                                    self.currentUser.volunteer.festivalId = self.selectedID
+                                    intent.changeFestival(volunteer: self.currentUser.volunteer.id, festival: selectedID)
+                                    self.toastMessage = "Changement de festival effectué !"
+                                    self.showSuccessToast.toggle()
+                                    self.selectedID = ""
+                                }
+                                
+                            },
+                            secondaryButton: .cancel(Text("Annuler")) {
+                                self.selectedID = ""
+                                self.toastMessage = "Changement de festival annulé !"
+                                self.showErrorToast.toggle()
+                            }
+                        )
                     }
                     .refreshable {
                         intent.loadOther(firebaseId: currentUser.volunteer.firebaseId)
                     }
-                    .scrollContentBackground(.hidden)
-                    //.navigationDestination(for: FestivalViewModel.self){
-                      //  vm in
-                        //FestivalDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast)
-                    //}
+                    .navigationDestination(for: FestivalViewModel.self){
+                        vm in
+                        OtherFestivalsDetailView(vm: vm)
+                    }
+                    Spacer()
+                    .toast(isPresenting: $showSuccessToast) {
+                        AlertToast(displayMode: .banner(.slide), type: .complete(.green), title: toastMessage, subTitle: nil, style: nil)
+                    }
+                    .toast(isPresenting: $showErrorToast) {
+                        AlertToast(displayMode: .banner(.slide), type: .error(.red), title: toastMessage, subTitle: nil, style: nil)
+                    }
                     
                 default:
                     CustomEmptyView()

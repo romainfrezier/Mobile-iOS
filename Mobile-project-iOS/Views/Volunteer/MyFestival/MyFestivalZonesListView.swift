@@ -44,7 +44,7 @@ struct MyFestivalZonesListView: View {
                                     }
                                 }
                             }
-                        }.scrollContentBackground(.hidden)
+                        }
                     }
                 }
             default:

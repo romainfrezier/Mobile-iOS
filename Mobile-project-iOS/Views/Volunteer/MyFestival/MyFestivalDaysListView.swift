@@ -56,7 +56,6 @@ struct MyFestivalDaysListView: View {
                                     }
                                 }
                             }
-                            .scrollContentBackground(.hidden)
                         }.navigationDestination(for: DayViewModel.self){
                             vm in DayDetailView(vm: vm)
                         }

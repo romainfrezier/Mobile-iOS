@@ -30,6 +30,13 @@ struct FestivalsListIntent{
         }
     }
     
+    func changeFestival(volunteer: String, festival: String){
+        festivalsListVM.state = .updating
+        Task{
+            await self.changeFestivalAux(volunteer: volunteer, festival: festival)
+        }
+    }
+    
     
     
     func delete(id: String) {
@@ -57,6 +64,13 @@ struct FestivalsListIntent{
     func loadOtherAux(firebaseId: String) async {
         APITools.loadFromAPI(endpoint: "festivals/others/" + firebaseId, callback: self.loadedData, apiReturn: returnType.array.rawValue)
     }
+    
+    func changeFestivalAux(volunteer: String, festival: String) async {
+        let body: [String: Any] = ["festival":festival]
+        await APITools.updateOnAPI(endpoint: "volunteers/changeFestival", id: volunteer, body: body)
+        festivalsListVM.state = .idle
+    }
+
     
     func deleteAux(id: String) async {
         APITools.removeOnAPI(endpoint: "festivals", id: id)

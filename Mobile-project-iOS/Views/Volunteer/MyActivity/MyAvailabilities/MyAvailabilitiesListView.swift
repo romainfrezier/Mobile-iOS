@@ -71,7 +71,6 @@ struct MyAvailabilitiesListView: View {
                                     volunteerIntent.removeSlot(id: currentUser.volunteer.id, slotID: slot.availableSlot.slot.id)
                                 }
                             }
-                            .scrollContentBackground(.hidden)
                         }
                     }
                 }.fullScreenCover(isPresented: $isPresentedNew){

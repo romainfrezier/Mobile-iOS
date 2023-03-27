@@ -100,6 +100,7 @@
 		B7618B2629C99EC500522551 /* ZoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7618B2529C99EC500522551 /* ZoneDTO.swift */; };
 		B7618B2829C99FFE00522551 /* DayDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7618B2729C99FFE00522551 /* DayDTO.swift */; };
 		B7618B2A29C9A18F00522551 /* SlotDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7618B2929C9A18F00522551 /* SlotDTO.swift */; };
+		B7F1F8F329D17123002FF0BE /* OtherFestivalsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F1F8F229D17123002FF0BE /* OtherFestivalsDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,6 +194,7 @@
 		B7618B2529C99EC500522551 /* ZoneDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneDTO.swift; sourceTree = "<group>"; };
 		B7618B2729C99FFE00522551 /* DayDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDTO.swift; sourceTree = "<group>"; };
 		B7618B2929C9A18F00522551 /* SlotDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotDTO.swift; sourceTree = "<group>"; };
+		B7F1F8F229D17123002FF0BE /* OtherFestivalsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFestivalsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -566,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				B7618B1729C996E600522551 /* OtherFestivalsListView.swift */,
+				B7F1F8F229D17123002FF0BE /* OtherFestivalsDetailView.swift */,
 			);
 			path = OthersFestivals;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				A723AF9C29CB7F0100EEAD5D /* ZonesListIntent.swift in Sources */,
 				A762E99429C7598200B23915 /* LoginView.swift in Sources */,
 				A762E99529C7598200B23915 /* ProfileView.swift in Sources */,
+				B7F1F8F329D17123002FF0BE /* OtherFestivalsDetailView.swift in Sources */,
 				A7DF659B29CCB421006237AD /* LoadingView.swift in Sources */,
 				B7618B2029C99AE700522551 /* FestivalViewModel.swift in Sources */,
 				B7618B2429C99C5200522551 /* FestivalDTO.swift in Sources */,

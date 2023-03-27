@@ -69,7 +69,6 @@ struct ChooseFestivalView: View {
                             }.refreshable {
                                 intent.load()
                             }
-                            .scrollContentBackground(.hidden)
                         }
                     default:
                         CustomEmptyView()
