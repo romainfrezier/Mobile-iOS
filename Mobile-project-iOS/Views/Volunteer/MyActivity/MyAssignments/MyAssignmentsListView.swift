@@ -23,7 +23,7 @@ struct MyAssignmentsListView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        VStack {
             
             switch slotsListVM.state {
             case .loading :
@@ -53,7 +53,6 @@ struct MyAssignmentsListView: View {
                                     }
                                 }
                             }
-                            .scrollContentBackground(.hidden)
                         }
                         .navigationDestination(for: SlotDetailedViewModel.self){
                             vm in AssignmentDetailView(zoneName: vm.availableSlot.zone!.name, slotID: vm.availableSlot.slot.id, volunteerID: volunteerID)

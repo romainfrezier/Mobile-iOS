@@ -34,7 +34,7 @@ struct AddAvailabilityView: View {
     var body: some View {
         VStack {
             HStack {
-                Button("Fermer"){
+                Button("Annuler"){
                     self.isPresentedNew.toggle()
                 }
                 Spacer()
@@ -58,6 +58,11 @@ struct AddAvailabilityView: View {
                                     } label: {
                                         VStack {
                                             HStack {
+                                                Text("Le ")
+                                                Text(DateFormatters.justDate().string(from: vm.slot.start))
+                                                Spacer()
+                                            }
+                                            HStack {
                                                 Text("Début à :")
                                                 Spacer()
                                                 Text(DateFormatters.justTime().string(from: vm.slot.start))
@@ -72,7 +77,6 @@ struct AddAvailabilityView: View {
                                     }
                                 }
                             }
-                            .scrollContentBackground(.hidden)
                         }
                     }
                 }

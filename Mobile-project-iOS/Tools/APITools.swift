@@ -172,7 +172,7 @@ struct APITools {
     }
     
     // MARK: - Update data
-    static func updateOnAPI(endpoint: String, id: String, body: [String: Any]){
+    static func updateOnAPI(endpoint: String, id: String, body: [String: Any], completion: @escaping (Result<Data, Error>) -> Void){
         guard let url = buildURL(endpoint: endpoint, parameter: id) else {
             return
         }
@@ -198,19 +198,21 @@ struct APITools {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body)
             } catch {
                 print("Error encoding : \(error.localizedDescription)")
+                completion(.failure(error))
                 return
             }
             
             URLSession.shared.dataTask(with: request) { (data, res, error) in
                 guard let data = data, let response = res as? HTTPURLResponse, error == nil else {
                     print("Error sending request: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(.failure(error ?? NSError(domain: "Unknown error", code: 0, userInfo: nil)))
                     return
                 }
                 
                 if response.statusCode == 201 {
-                    print(data)
+                    completion(.success(data))
                 } else {
-                    print("Error updating : \(response.statusCode)")
+                    completion(.failure(NSError(domain: "Error creating: \(response.statusCode)", code: response.statusCode, userInfo: nil)))
                 }
             }.resume()
         }

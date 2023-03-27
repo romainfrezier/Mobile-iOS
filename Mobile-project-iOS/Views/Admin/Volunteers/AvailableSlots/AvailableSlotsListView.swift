@@ -131,7 +131,12 @@ struct AvailableSlotsListView: View {
             }.padding()
             
         })
-        .onAppear{
+        .onAppear {
+            availableSlotsIntent.loadAvailable(id: self.currentUserID)
+            if (self.userFestival != "") {
+                zonesIntent.loadByFestival(festival: self.userFestival)
+            }
+        }.refreshable {
             availableSlotsIntent.loadAvailable(id: self.currentUserID)
             if (self.userFestival != "") {
                 zonesIntent.loadByFestival(festival: self.userFestival)
