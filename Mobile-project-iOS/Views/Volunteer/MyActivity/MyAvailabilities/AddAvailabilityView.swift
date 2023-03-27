@@ -74,7 +74,7 @@ struct AddAvailabilityView: View {
                                                 Text(DateFormatters.justTime().string(from: vm.slot.end))
                                             }
                                         }
-                                    }
+                                    }.buttonStyle(PlainButtonStyle())
                                 }
                             }
                         }

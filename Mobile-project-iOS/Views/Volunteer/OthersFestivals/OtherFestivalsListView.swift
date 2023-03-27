@@ -69,7 +69,7 @@ struct OtherFestivalsListView: View {
                                     self.selectedID = vm.festival.id
                                     self.alertPresented.toggle()
                                 } label: {
-                                    Label("Changer", systemImage: "bookmark.slash")
+                                    Label("Changer", systemImage: "arrow.triangle.2.circlepath")
                                 }.tint(.blue)
                             }
                         }
