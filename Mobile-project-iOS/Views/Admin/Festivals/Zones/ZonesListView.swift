@@ -101,7 +101,7 @@ struct ZonesListView: View {
                             }
                         }.toast(isPresenting: $showSuccessToast) {
                             AlertToast(displayMode: .banner(.slide), type: .complete(.green), title: successMessage, subTitle: nil, style: nil)
-                        }.scrollContentBackground(.hidden)
+                        }
                     }
                 }
                 .sheet(isPresented: $isPresentedNewZone) {

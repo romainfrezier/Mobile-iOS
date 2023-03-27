@@ -25,6 +25,9 @@ class VolunteerViewModel: ObservableObject, Decodable, Hashable, Equatable {
                 self.state = .idle
             case .failed(let error):
                 print("failed: \(error)")
+            case .updateFestival(let festival):
+                self.volunteer.festivalId = festival
+                self.state = .idle
             default:
                 print("VolunteerViewModel state : \(self.state)")
                 break
@@ -65,5 +68,9 @@ class VolunteerViewModel: ObservableObject, Decodable, Hashable, Equatable {
     
     func updateSlots(slots: [AvailableSlotsDTO]){
         self.volunteer.availableSlots = slots
+    }
+    
+    func updtateFestival(festivalID: String){
+        self.volunteer.festivalId = festivalID
     }
 }

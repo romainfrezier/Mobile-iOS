@@ -100,7 +100,6 @@ struct FestivalsListView: View {
                             .refreshable {
                                 intent.load()
                             }
-                            .scrollContentBackground(.hidden)
                             .navigationDestination(for: FestivalViewModel.self){
                                 vm in
                                 FestivalDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast)

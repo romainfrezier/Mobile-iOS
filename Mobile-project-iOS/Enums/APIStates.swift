@@ -33,4 +33,5 @@ enum APIStates<T> : CustomStringConvertible {
     case deleting
     case updating
     case failed(APIErrors)
+    case updateFestival(String)
 }

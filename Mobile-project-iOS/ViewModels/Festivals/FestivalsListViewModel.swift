@@ -22,7 +22,7 @@ class FestivalsListViewModel: ObservableObject{
             }
         }
     }
-
+    
     @Published var festivals : [FestivalViewModel];
     
     init(festivals: [FestivalViewModel]) {
