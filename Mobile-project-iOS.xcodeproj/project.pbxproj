@@ -76,6 +76,7 @@
 		A762E9A229C75A2500B23915 /* CustomEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762E9A029C75A2400B23915 /* CustomEmptyView.swift */; };
 		A762E9A529C75BFC00B23915 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A762E9A429C75BFC00B23915 /* FirebaseAuth */; };
 		A762E9A729C75BFC00B23915 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A762E9A629C75BFC00B23915 /* FirebaseAuthCombine-Community */; };
+		A7780C7229D3581E00C066FB /* SelectZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7780C7129D3581E00C066FB /* SelectZoneView.swift */; };
 		A7DF658C29CC4890006237AD /* FestivalUpdateNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF658B29CC4890006237AD /* FestivalUpdateNameView.swift */; };
 		A7DF658F29CC6065006237AD /* AddZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF658E29CC6065006237AD /* AddZoneView.swift */; };
 		A7DF659329CC651D006237AD /* FestivalIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF659229CC651D006237AD /* FestivalIntent.swift */; };
@@ -170,6 +171,7 @@
 		A762E99B29C759E300B23915 /* PasswordToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordToggle.swift; sourceTree = "<group>"; };
 		A762E99F29C75A2400B23915 /* LoggedInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInView.swift; sourceTree = "<group>"; };
 		A762E9A029C75A2400B23915 /* CustomEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEmptyView.swift; sourceTree = "<group>"; };
+		A7780C7129D3581E00C066FB /* SelectZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectZoneView.swift; sourceTree = "<group>"; };
 		A7DF658B29CC4890006237AD /* FestivalUpdateNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalUpdateNameView.swift; sourceTree = "<group>"; };
 		A7DF658E29CC6065006237AD /* AddZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddZoneView.swift; sourceTree = "<group>"; };
 		A7DF659229CC651D006237AD /* FestivalIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalIntent.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				A723AF9029CB663C00EEAD5D /* AvailableSlotsListView.swift */,
+				A7780C7129D3581E00C066FB /* SelectZoneView.swift */,
 			);
 			path = AvailableSlots;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				A7DF659529CC6570006237AD /* ZoneIntent.swift in Sources */,
 				A7DF65A329CCBCEA006237AD /* DaysListViewModel.swift in Sources */,
 				A723AFA129CBA3A000EEAD5D /* FestivalAddView.swift in Sources */,
+				A7780C7229D3581E00C066FB /* SelectZoneView.swift in Sources */,
 				A762E96829C7517D00B23915 /* StringTools.swift in Sources */,
 				A75DE67329D07C0000D91113 /* AssignmentDetailView.swift in Sources */,
 				A75DE66929CF712B00D91113 /* AddAvailabilityView.swift in Sources */,

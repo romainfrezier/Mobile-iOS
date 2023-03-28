@@ -79,7 +79,9 @@ struct SlotsDetailedListIntent {
             result in
             switch result {
             case .success(_):
-                slotsVM.state = .idle
+                DispatchQueue.main.async {
+                    self.loadAvailable(id: volunteer)
+                }
             case .failure(_):
                 slotsVM.state = .failed(.apiError)
             }
@@ -95,9 +97,13 @@ struct SlotsDetailedListIntent {
             result in
             switch result {
             case .success(_):
-                slotsVM.state = .idle
+                DispatchQueue.main.async {
+                    self.loadAvailable(id: volunteer)
+                }
             case .failure(_):
-                slotsVM.state = .failed(.apiError)
+                DispatchQueue.main.async {
+                    self.loadAvailable(id: volunteer)
+                }
             }
         }
     }

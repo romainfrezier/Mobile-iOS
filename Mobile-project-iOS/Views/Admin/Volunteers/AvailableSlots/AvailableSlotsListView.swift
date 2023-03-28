@@ -13,14 +13,11 @@ struct AvailableSlotsListView: View {
     @ObservedObject private var availableSlotsVM : SlotsDetailedListViewModel
     @State private var availableSlotsIntent : SlotsDetailedListIntent
     
-    @ObservedObject private var zonesVM : ZonesListViewModel
-    @State private var zonesIntent : ZonesListIntent
-    
     @State var currentUserID : String
     @State var userFestival : String
     
     @State private var isListDisplayed: Bool = false
-    @State private var selectedSlot: SlotDetailedViewModel? = nil
+    @State private var selectedSlot: String = ""
     
     @State private var toastMessage : String = ""
     @State private var isToastDisplayed : Bool = false
@@ -28,17 +25,13 @@ struct AvailableSlotsListView: View {
     init(id: String, festival: String?) {
         self.availableSlotsVM = SlotsDetailedListViewModel()
         self._availableSlotsIntent = State(initialValue: SlotsDetailedListIntent(slotsVM: self._availableSlotsVM.wrappedValue))
-        
-        self.zonesVM = ZonesListViewModel()
-        self._zonesIntent = State(initialValue: ZonesListIntent(zoneListVM: self._zonesVM.wrappedValue))
-        
         self.currentUserID = id
         self.userFestival = festival ?? ""
     }
     var body: some View {
         VStack {
             switch availableSlotsVM.state {
-            case .loading :
+            case .loading, .updating :
                 LoadingView()
             case .idle :
                 if (availableSlotsVM.slots == []) {
@@ -66,9 +59,6 @@ struct AvailableSlotsListView: View {
                                 if vm.availableSlot.zone != nil {
                                     Button{
                                         availableSlotsIntent.free(volunteer: self.currentUserID, slot: vm.availableSlot.slot.id)
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                            availableSlotsIntent.loadAvailable(id: self.currentUserID)
-                                        }
                                         self.toastMessage = "Bénévole libérer avec succès !"
                                         self.isToastDisplayed = true
                                     } label: {
@@ -76,7 +66,7 @@ struct AvailableSlotsListView: View {
                                     }.tint(.blue)
                                 } else {
                                     Button{
-                                        self.selectedSlot = vm
+                                        self.selectedSlot = vm.availableSlot.slot.id
                                         isListDisplayed = true
                                     } label: {
                                         Label("Assigner", systemImage: "bookmark")
@@ -96,51 +86,13 @@ struct AvailableSlotsListView: View {
             }
         }
         .sheet(isPresented: $isListDisplayed, content: {
-            
-            VStack(alignment: .leading) {
-                HStack {
-                    Button("Annuler") {
-                        self.toastMessage = "Bénévole n'a pas été affecté !"
-                        self.isToastDisplayed = true
-                        self.isListDisplayed.toggle()
-                    }
-                    Spacer()
-                }.padding()
-                
-                Text("Les zones du festival").font(.title).bold().padding()
-                if (zonesVM.zones == []){
-                    Text("Ce festival n'a pas encore de zone...").padding()
-                } else {
-                    List {
-                        ForEach(zonesVM.zones, id: \.self) { zone in
-                            Button {
-                                isListDisplayed = false
-                                availableSlotsIntent.assign(volunteer: self.currentUserID, slot: self.selectedSlot!.availableSlot.slot.id, zone: zone.zone.id)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                    availableSlotsIntent.loadAvailable(id: self.currentUserID)
-                                }
-                                self.toastMessage = "Bénévole affecté avec succès !"
-                                self.isToastDisplayed = true
-                            } label: {
-                                Text(zone.zone.name)
-                            }
-                        }
-                    }.padding()
-                }
-                Spacer()
-            }.padding()
-            
+            SelectZoneView(availableSlotsIntent: availableSlotsIntent, isListDisplayed: $isListDisplayed, toastMessage: $toastMessage, isToastDisplayed: $isToastDisplayed, selectedSlot: self.selectedSlot, currentUserID: self.currentUserID, userFestival: self.userFestival)
         })
         .onAppear {
             availableSlotsIntent.loadAvailable(id: self.currentUserID)
-            if (self.userFestival != "") {
-                zonesIntent.loadByFestival(festival: self.userFestival)
-            }
+
         }.refreshable {
             availableSlotsIntent.loadAvailable(id: self.currentUserID)
-            if (self.userFestival != "") {
-                zonesIntent.loadByFestival(festival: self.userFestival)
-            }
         }
     }
 }
