@@ -22,6 +22,10 @@ The AWI (Web Application and Interoperability) project is a project that we had 
   <img alt="github link" src="https://img.shields.io/badge/firebase-9.17.1-orange?style=for-the-badge&logo=firebase">
 </a>
 
+<a target="_blank" href="https://github.com/elai950/AlertToast">
+  <img alt="github link" src="https://img.shields.io/badge/Alert Toast-grey?style=for-the-badge&logo=googlemessages">
+</a>
+
 ---
 
 ### Links
