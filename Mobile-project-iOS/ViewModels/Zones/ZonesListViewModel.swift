@@ -13,6 +13,7 @@ class ZonesListViewModel: ObservableObject {
         didSet {
             switch state {
             case .load(let zones):
+                zones.map{print($0.zone.name)}
                 self.zones = zones
                 self.state = .idle
             case .failed(let error):

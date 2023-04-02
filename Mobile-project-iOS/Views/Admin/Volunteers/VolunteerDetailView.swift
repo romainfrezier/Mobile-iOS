@@ -18,9 +18,9 @@ struct VolunteerDetailView: View {
     @Binding var successMessage : String
     @Binding var showSuccessToast : Bool
     
-    @State var festivalID : String?
+    @State var festivalID : String
 
-    init(vm:VolunteerViewModel, successMessage: Binding<String>, showSuccessToast: Binding<Bool>, festivalID: String?) {
+    init(vm:VolunteerViewModel, successMessage: Binding<String>, showSuccessToast: Binding<Bool>, festivalID: String) {
         self.vm = vm
         self._intent = State(initialValue: VolunteerIntent(volunteerVM: vm))
         self._successMessage = successMessage

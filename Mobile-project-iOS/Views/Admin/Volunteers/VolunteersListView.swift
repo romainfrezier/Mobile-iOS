@@ -79,11 +79,10 @@ struct VolunteersListView: View {
                         }
                     }.refreshable {
                         intent.load()
+                    }.navigationDestination(for: VolunteerViewModel.self){
+                        vm in
+                        VolunteerDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast, festivalID: vm.volunteer.festivalId!)
                     }
-                        .navigationDestination(for: VolunteerViewModel.self){
-                            vm in
-                            VolunteerDetailView(vm: vm, successMessage: $successMessage, showSuccessToast: $showSuccessToast, festivalID: vm.volunteer.festivalId)
-                        }
                 default:
                     CustomEmptyView()
                 }

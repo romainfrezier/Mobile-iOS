@@ -36,6 +36,7 @@ struct ZonesListIntent {
         switch result {
         case .successList(let zones):
             zoneListVM.state = .load(zones)
+            zoneListVM.objectWillChange.send()
         default:
             zoneListVM.state = .failed(.apiError)
         }

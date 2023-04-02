@@ -22,19 +22,20 @@ struct AvailableSlotsListView: View {
     @State private var toastMessage : String = ""
     @State private var isToastDisplayed : Bool = false
     
-    init(id: String, festival: String?) {
+    init(id: String, festival: String) {
         self.availableSlotsVM = SlotsDetailedListViewModel()
         self._availableSlotsIntent = State(initialValue: SlotsDetailedListIntent(slotsVM: self._availableSlotsVM.wrappedValue))
         self.currentUserID = id
-        self.userFestival = festival ?? ""
+        self.userFestival = festival
     }
+    
     var body: some View {
         VStack {
             switch availableSlotsVM.state {
-            case .loading, .updating :
+            case .loading :
                 LoadingView()
             case .idle :
-                if (availableSlotsVM.slots == []) {
+                if (availableSlotsVM.slots.isEmpty) {
                     EmptyArrayPlaceholder(text: "Aucune disponibilité.")
                 } else {
                     List{
@@ -85,12 +86,11 @@ struct AvailableSlotsListView: View {
                 CustomEmptyView()
             }
         }
-        .sheet(isPresented: $isListDisplayed, content: {
+        .fullScreenCover(isPresented: $isListDisplayed, content: {
             SelectZoneView(availableSlotsIntent: availableSlotsIntent, isListDisplayed: $isListDisplayed, toastMessage: $toastMessage, isToastDisplayed: $isToastDisplayed, selectedSlot: self.selectedSlot, currentUserID: self.currentUserID, userFestival: self.userFestival)
         })
         .onAppear {
             availableSlotsIntent.loadAvailable(id: self.currentUserID)
-
         }.refreshable {
             availableSlotsIntent.loadAvailable(id: self.currentUserID)
         }
